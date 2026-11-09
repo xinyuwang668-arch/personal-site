@@ -2035,3 +2035,7 @@ html[lang="en"] .doc__en{display:none}
 .doc__figure--small{max-width:520px;margin-left:auto;margin-right:auto}
 .doc__figure--small img{width:auto;max-width:100%;margin:0 auto}
 .doc__figure--small figcaption{text-align:center}
+
+/* mailto fallback toast */
+.mail-toast{position:fixed;left:50%;bottom:24px;z-index:320;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:var(--green);color:var(--paper);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;padding:11px 16px;border:1px solid rgba(214,179,106,.5);box-shadow:0 8px 24px rgba(15,39,33,.25);transition:opacity .25s ease,transform .25s ease;max-width:calc(100vw - 40px);text-align:center}
+.mail-toast.is-on{opacity:1;transform:translate(-50%,0)}

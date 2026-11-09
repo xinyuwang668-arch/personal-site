@@ -122,6 +122,49 @@
     if (a) e.preventDefault();
   });
 
+  /* ---------- mailto: copy the address, in case no mail app is set ---------- */
+
+  var toast = doc.getElementById('mailToast');
+  var toastTimer;
+
+  function legacyCopy(text) {
+    var ta = doc.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-100px';
+    doc.body.appendChild(ta);
+    ta.select();
+    try { doc.execCommand('copy'); } catch (err) { /* ignore */ }
+    doc.body.removeChild(ta);
+  }
+
+  function showToast(text) {
+    if (!toast) return;
+    toast.textContent = text;
+    toast.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('is-on'); }, 5000);
+  }
+
+  doc.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="mailto:"]') : null;
+    if (!a) return;
+
+    var addr = (a.getAttribute('href') || '').replace(/^mailto:/, '').split('?')[0];
+    var done = function () { showToast(label('邮箱已复制：') + addr); };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(addr).then(done, function () {
+        legacyCopy(addr);
+        done();
+      });
+    } else {
+      legacyCopy(addr);
+      done();
+    }
+  });
+
   /* ---------- footer year ---------- */
 
   var year = doc.getElementById('year');
