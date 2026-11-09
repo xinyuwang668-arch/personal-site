@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线语音转换 · 项目 / 王欣宇</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="在线语音转换 · 项目 / 王欣宇">
+<meta property="og:description" content="在线语音转换 qqvoice-web：打开网页，上传 SILK 语音，转成 WAV 打包下载。">
+<meta property="og:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="description" content="在线语音转换 qqvoice-web：打开网页，上传 SILK 语音，转成 WAV 打包下载。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="container doc-header__in">
+    <a class="doc-brand" href="../index.html"><span class="brand__cn">王欣宇</span> <i>WANG XINYU</i></a>
+    <div class="doc-header__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang__btn" data-lang="ja" aria-pressed="false">日</button>
+        <button type="button" class="lang__btn" data-lang="ko" aria-pressed="false">한</button>
+      </div>
+      <a class="doc-back" href="../index.html#works">← 全部作品</a>
+    </div>
+  </div>
+</header>
+
+<main class="doc">
+  <div class="container">
+    <p class="doc__eyebrow">PROJECT 06 — WEB TOOL</p>
+    <h1 class="doc__title">在线语音转换 <span class="doc__en">QQVOICE WEB</span></h1>
+    <p class="doc__lead">不想装软件的话，打开网页，把 .silk 拖进去，转完打包下载。</p>
+
+    <dl class="doc__meta">
+      <div><dt>年份</dt><dd>2026</dd></div>
+      <div><dt>技术</dt><dd>Python · Flask · pysilk</dd></div>
+      <div><dt>状态</dt><dd>在线（Render）</dd></div>
+      <div><dt>仓库</dt><dd>未公开</dd></div>
+    </dl>
+
+    <figure class="doc__figure doc__figure--small">
+      <img src="../assets/shots/qqvoice-ui.webp" width="700" height="390" alt="" loading="lazy">
+      <figcaption>上传页：拖入 .silk、点开始转换，完成后下载 zip。</figcaption>
+    </figure>
+
+    <div class="doc__body">
+      <h2>它做什么</h2>
+      <p>一个居中的拖放框，加一个上传按钮。可以一次放多个 .silk，检测到文件头之后批量解码，最后打成一个 zip 给你下载。</p>
+      <p>不上传第三方、不保存文件：转换在内存里完成，请求结束就没了。</p>
+
+      <h2>怎么做的</h2>
+      <p>Flask 只提供两个路由：页面和转换。转换时逐个读取、pysilk 解码、写进内存里的 zip；文件名重复就加序号。模板刻意做得克制，一屏放下说明、拖放框和按钮。</p>
+      <p>项目里带 <code>runtime.txt</code>，固定在 Render 的免费实例上跑，不需要数据库。</p>
+
+      <blockquote class="doc__quote">能少装一个软件，就少装一个。</blockquote>
+
+      <h2>踩过的坑</h2>
+      <ul>
+        <li>免费实例会休眠，第一次打开要等十几秒，得在页面上说清楚。</li>
+        <li>上传体积有上限，超过时要明确拒绝，而不是转到一半失败。</li>
+        <li>并发转换会吃内存，简单加一个队列比堆机器便宜。</li>
+        <li>有些文件名是中文，zip 里的编码要统一。</li>
+      </ul>
+      <p>这个页面和桌面版共用同一套解码逻辑，只是把「保存到本地」换成了「打包给你」。</p>
+    </div>
+
+    <nav class="doc__nav">
+      <a href="silk2wav.html"><span>上一个项目</span>← 语音转换器</a>
+      <a class="next" href="../index.html#works"><span>返回</span>全部作品 →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="doc-footer">
+  <div class="container doc-footer__in">
+    <span>© 2026 王欣宇 · PERSONAL ARCHIVE</span>
+    <a href="../index.html">返回档案</a>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/doc-i18n.js"></script>
+</body>
+</html>

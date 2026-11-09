@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>临时视频链接 · 项目 / 王欣宇</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="临时视频链接 · 项目 / 王欣宇">
+<meta property="og:description" content="临时视频链接：把本机视频变成一个会过期的链接，发出去就能看。">
+<meta property="og:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="description" content="临时视频链接：把本机视频变成一个会过期的链接，发出去就能看。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="container doc-header__in">
+    <a class="doc-brand" href="../index.html"><span class="brand__cn">王欣宇</span> <i>WANG XINYU</i></a>
+    <div class="doc-header__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang__btn" data-lang="ja" aria-pressed="false">日</button>
+        <button type="button" class="lang__btn" data-lang="ko" aria-pressed="false">한</button>
+      </div>
+      <a class="doc-back" href="../index.html#works">← 全部作品</a>
+    </div>
+  </div>
+</header>
+
+<main class="doc">
+  <div class="container">
+    <p class="doc__eyebrow">PROJECT 02 — LOCAL SERVER</p>
+    <h1 class="doc__title">临时视频链接 <span class="doc__en">VIDEO LINK SERVER</span></h1>
+    <p class="doc__lead">把本机上的视频变成一个临时链接，发出去就能看；到点自动失效，也可以随时收回。</p>
+
+    <dl class="doc__meta">
+      <div><dt>年份</dt><dd>2026</dd></div>
+      <div><dt>技术</dt><dd>Python · Flask · cloudflared</dd></div>
+      <div><dt>状态</dt><dd>已打包 exe / 安装包</dd></div>
+      <div><dt>仓库</dt><dd>未公开</dd></div>
+    </dl>
+
+    <figure class="doc__figure">
+      <img src="../assets/shots/video-link-ui.webp" width="812" height="720" alt="" loading="lazy">
+      <figcaption>临时视频链接 v2.0：有效期、Token 与公网地址都在同一屏。</figcaption>
+    </figure>
+
+    <div class="doc__body">
+      <h2>它做什么</h2>
+      <p>选一个视频，点开始：本地起一个只监听 127.0.0.1 的小服务，再用 cloudflared 开一条隧道，生成一个带 32 位随机 token 的链接。默认 1800 秒过期，倒计时就在窗口里；不想等了，点一下撤销，链接立刻作废。</p>
+      <p>对方在浏览器里直接播放，不用登录、不用装东西，也能拖动进度条。</p>
+
+      <h2>怎么做的</h2>
+      <p>界面是 Tkinter。Flask 只做三件事：校验 token、校验过期时间、按 Range 返回视频分片。Range 是关键——没有它，浏览器就只能从头播，拖不动。</p>
+      <p>cloudflared 作为子进程启动，退出时一并关掉，避免留下僵尸隧道。链接里的 token 每次重新生成，不复用。</p>
+
+      <blockquote class="doc__quote">链接会过期，分享这件事也就有了分寸。</blockquote>
+
+      <h2>踩过的坑</h2>
+      <ul>
+        <li>隧道建立要几秒，这期间链接是打不开的，界面必须说清楚「正在开门」。</li>
+        <li>每次启动域名都不同，不能把旧链接写死在任何地方。</li>
+        <li>Windows 防火墙第一次会弹窗，拒绝之后整个服务都连不上，得给一句人话提示。</li>
+        <li>免费隧道带宽有限，太大的文件会让对方以为「卡死了」。</li>
+      </ul>
+      <p>安装包同样用 Inno Setup，安装完会在开始菜单留一个入口，卸载时结束进程。</p>
+    </div>
+
+    <nav class="doc__nav">
+      <a href="hide-zip.html"><span>上一个项目</span>← 藏图</a>
+      <a class="next" href="nekovault.html"><span>下一个项目</span>喵喵秘藏 →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="doc-footer">
+  <div class="container doc-footer__in">
+    <span>© 2026 王欣宇 · PERSONAL ARCHIVE</span>
+    <a href="../index.html">返回档案</a>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/doc-i18n.js"></script>
+</body>
+</html>

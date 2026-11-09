@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>语音转换器 · 项目 / 王欣宇</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="语音转换器 · 项目 / 王欣宇">
+<meta property="og:description" content="语音转换器 silk2wav：把 QQ 的 SILK 语音批量转成 WAV。">
+<meta property="og:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="description" content="语音转换器 silk2wav：把 QQ 的 SILK 语音批量转成 WAV。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="container doc-header__in">
+    <a class="doc-brand" href="../index.html"><span class="brand__cn">王欣宇</span> <i>WANG XINYU</i></a>
+    <div class="doc-header__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang__btn" data-lang="ja" aria-pressed="false">日</button>
+        <button type="button" class="lang__btn" data-lang="ko" aria-pressed="false">한</button>
+      </div>
+      <a class="doc-back" href="../index.html#works">← 全部作品</a>
+    </div>
+  </div>
+</header>
+
+<main class="doc">
+  <div class="container">
+    <p class="doc__eyebrow">PROJECT 05 — AUDIO CONVERTER</p>
+    <h1 class="doc__title">语音转换器 <span class="doc__en">SILK2WAV</span></h1>
+    <p class="doc__lead">把 QQ 的 .silk 语音拖进来，批量转成能播的 WAV，原文件不动。</p>
+
+    <dl class="doc__meta">
+      <div><dt>年份</dt><dd>2026</dd></div>
+      <div><dt>技术</dt><dd>Python · pysilk</dd></div>
+      <div><dt>状态</dt><dd>已打包 exe</dd></div>
+      <div><dt>仓库</dt><dd>未公开</dd></div>
+    </dl>
+
+    <figure class="doc__figure">
+      <img src="../assets/shots/silk2wav-ui.webp" width="752" height="607" alt="" loading="lazy">
+      <figcaption>批量界面：默认保留 .silk 文件，跳过已经存在的 .wav。</figcaption>
+    </figure>
+
+    <div class="doc__body">
+      <h2>它做什么</h2>
+      <p>选文件或直接拖放，支持批量。输出是 24kHz、单声道、16bit 的 WAV，和原语音放在同一个目录；已经转过的默认跳过，原来的 .silk 保留不删。</p>
+      <p>转换前先认文件头，不是 SILK 的会单独列出来，不会混在一起假装成功。</p>
+
+      <h2>怎么做的</h2>
+      <p>用 pysilk 解码，wave 模块写文件。文件名会清掉 Windows 不接受的字符，重名时自动加序号。整个过程在本地，不上传。</p>
+      <p>界面是 Tkinter，一个列表加两个按钮，尽量少让人做选择。</p>
+
+      <blockquote class="doc__quote">有些声音只存在聊天记录里，值得捞出来。</blockquote>
+
+      <h2>踩过的坑</h2>
+      <ul>
+        <li>有的文件带 <code>#!SILK_V3</code> 头，有的没有，得先探测再解码。</li>
+        <li>超长语音一次性读进内存会顶不住，要按块写。</li>
+        <li>中文路径和空格路径都要试一遍，不能只在本机看着正常就算完。</li>
+      </ul>
+      <p>转换失败的文件会留在列表里并标红，原因写清楚，方便单独重试。</p>
+    </div>
+
+    <nav class="doc__nav">
+      <a href="gif-studio.html"><span>上一个项目</span>← GIF Studio Pro</a>
+      <a class="next" href="qqvoice.html"><span>下一个项目</span>在线语音转换 →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="doc-footer">
+  <div class="container doc-footer__in">
+    <span>© 2026 王欣宇 · PERSONAL ARCHIVE</span>
+    <a href="../index.html">返回档案</a>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/doc-i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>喵喵秘藏 · 项目 / 王欣宇</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="喵喵秘藏 · 项目 / 王欣宇">
+<meta property="og:description" content="喵喵秘藏 NekoVault：本地优先的个人藏品柜，加密、备份、可导出。">
+<meta property="og:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="description" content="喵喵秘藏 NekoVault：本地优先的个人藏品柜，加密、备份、可导出。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="container doc-header__in">
+    <a class="doc-brand" href="../index.html"><span class="brand__cn">王欣宇</span> <i>WANG XINYU</i></a>
+    <div class="doc-header__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang__btn" data-lang="ja" aria-pressed="false">日</button>
+        <button type="button" class="lang__btn" data-lang="ko" aria-pressed="false">한</button>
+      </div>
+      <a class="doc-back" href="../index.html#works">← 全部作品</a>
+    </div>
+  </div>
+</header>
+
+<main class="doc">
+  <div class="container">
+    <p class="doc__eyebrow">PROJECT 03 — COLLECTION</p>
+    <h1 class="doc__title">喵喵秘藏 <span class="doc__en">NEKOVAULT</span></h1>
+    <p class="doc__lead">给手办、卡牌、海报做的本地藏品柜：拍照、归档、加锁、导出，不联网也能用。</p>
+
+    <dl class="doc__meta">
+      <div><dt>年份</dt><dd>2026</dd></div>
+      <div><dt>技术</dt><dd>Python · Tkinter</dd></div>
+      <div><dt>状态</dt><dd>本地可用</dd></div>
+      <div><dt>仓库</dt><dd>未公开</dd></div>
+    </dl>
+
+    <figure class="doc__figure">
+      <img src="../assets/shots/nekovault-home.webp" width="1008" height="571" alt="" loading="lazy">
+      <figcaption>首页：藏品总数、最近收藏与上次备份时间。</figcaption>
+    </figure>
+
+    <div class="doc__body">
+      <h2>它做什么</h2>
+      <p>一件藏品一张卡片：名称、分类、入手日期、描述、备注、封面，附件可以放多张图或票据。列表和网格两种看法，搜得到，也筛得动。</p>
+      <p>支持快照备份、zip 导入导出、单件导出成 <code>.nvault</code> 加密包、回收站保留 7 天、生成 PDF 目录册。主题有夜色紫、夏天海边和跟随系统三套。</p>
+
+      <figure class="doc__figure">
+        <img src="../assets/shots/nekovault-archive.webp" width="1008" height="700" alt="" loading="lazy">
+        <figcaption>档案馆：搜索、分类筛选、列表与网格两种视图。</figcaption>
+      </figure>
+
+      <h2>怎么做的</h2>
+      <p>界面用 Tkinter 自绘，刻意做成深紫色的夜：月亮、星星、柔和的卡片阴影。数据全部落在本地，不上传、不登录。</p>
+      <p>单件加密包用 AES-256-GCM，密钥由 scrypt 从口令派生；打包时把图片和元数据一起封进去，换台机器也能打开。程序崩溃会写日志，下次启动提示你。</p>
+
+      <blockquote class="doc__quote">收藏这件事，不该被某个平台的停服决定。</blockquote>
+
+      <h2>踩过的坑</h2>
+      <ul>
+        <li>中文文件名进 zip 容易乱码，要显式指定编码，并在导入时兼容两种老写法。</li>
+        <li>PDF 目录册要嵌入中文字体，否则在别人的电脑上会变成方块。</li>
+        <li>深色主题下图片容易「发光」，边框和背景要一起调，不能只调文字。</li>
+        <li>回收站要真的能还原，不能只是把记录藏起来。</li>
+      </ul>
+      <p>主题指南单独写在 <code>docs/THEME_GUIDE.md</code> 里，方便以后加第三套、第四套配色。</p>
+    </div>
+
+    <nav class="doc__nav">
+      <a href="video-link.html"><span>上一个项目</span>← 临时视频链接</a>
+      <a class="next" href="gif-studio.html"><span>下一个项目</span>GIF Studio Pro →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="doc-footer">
+  <div class="container doc-footer__in">
+    <span>© 2026 王欣宇 · PERSONAL ARCHIVE</span>
+    <a href="../index.html">返回档案</a>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/doc-i18n.js"></script>
+</body>
+</html>

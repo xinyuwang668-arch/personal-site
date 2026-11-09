@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>藏图 · 项目 / 王欣宇</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="藏图 · 项目 / 王欣宇">
+<meta property="og:description" content="藏图 Hide-Zip Image：把压缩包藏进图片、再用一个密码完整取出来。">
+<meta property="og:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xinyuwang668-arch.github.io/personal-site/assets/og.png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="description" content="藏图 Hide-Zip Image：把压缩包藏进图片、再用一个密码完整取出来。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="container doc-header__in">
+    <a class="doc-brand" href="../index.html"><span class="brand__cn">王欣宇</span> <i>WANG XINYU</i></a>
+    <div class="doc-header__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn" data-lang="zh" aria-pressed="true">中</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang__btn" data-lang="ja" aria-pressed="false">日</button>
+        <button type="button" class="lang__btn" data-lang="ko" aria-pressed="false">한</button>
+      </div>
+      <a class="doc-back" href="../index.html#works">← 全部作品</a>
+    </div>
+  </div>
+</header>
+
+<main class="doc">
+  <div class="container">
+    <p class="doc__eyebrow">PROJECT 01 — DESKTOP TOOL</p>
+    <h1 class="doc__title">藏图 <span class="doc__en">HIDE-ZIP IMAGE</span></h1>
+    <p class="doc__lead">把一个压缩包藏进一张图片里：图片照常打开，看不出异样；需要的时候，再把包原样取出来。</p>
+
+    <dl class="doc__meta">
+      <div><dt>年份</dt><dd>2026</dd></div>
+      <div><dt>技术</dt><dd>Python · customtkinter</dd></div>
+      <div><dt>状态</dt><dd>已打包 exe / 安装包</dd></div>
+      <div><dt>仓库</dt><dd><a href="https://github.com/xinyuwang668-arch/Hide-Zip2Image" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+
+    <figure class="doc__figure">
+      <img src="../assets/shots/hide-zip-ui.webp" width="853" height="850" alt="" loading="lazy">
+      <figcaption>藏图 V3.0.0 主界面：拖入图片与压缩包，勾选加密后导出。</figcaption>
+    </figure>
+
+    <div class="doc__body">
+      <h2>它做什么</h2>
+      <p>选一张图片、选一个压缩包、设一个密码，导出。图片在资源管理器里仍然是图片，能预览、能发群、能传网盘。想取出时，把图拖回程序，输入密码，压缩包完整还原。</p>
+      <p>支持 ZIP / RAR / 7Z，可以批量处理，可以验证「是否真的藏进去了」，有导出日志和更新检查。加密用 AES-256，密码不上传，也不存在任何地方。</p>
+
+      <h2>怎么做的</h2>
+      <p>界面是 customtkinter，拖放靠 tkinterdnd2，加密用 pyzipper，图像处理用 Pillow。导出前先压缩并加密，把密文追加到图片末尾，再在文件尾部写一段索引：偏移、长度、原文件名、校验值。提取时读索引、解密、按原路径还原。</p>
+      <p>整个流程不碰图片本身的像素，所以预览不会花，颜色不会变。代价是文件体积会变大，导出时会明确告诉你多了多少。</p>
+
+      <blockquote class="doc__quote">图片还是图片，只是多了一点你看不见的重量。</blockquote>
+
+      <h2>踩过的坑</h2>
+      <ul>
+        <li>有些看图软件会「另存为」，重写文件，藏在后面的数据就没了。所以提取前先校验索引，失败就明确报错，不去猜。</li>
+        <li>大文件复制很慢，进度条必须是真的，不能拿动画糊弄人。</li>
+        <li>Windows 会缓存缩略图，替换图片之后要主动刷新，否则看起来像没成功。</li>
+      </ul>
+      <p>安装包用 Inno Setup 打。卸载时只删程序，不动用户藏过的图——这一点写在安装向导里。</p>
+    </div>
+
+    <nav class="doc__nav">
+      <a href="../index.html#works"><span>返回</span>全部作品</a>
+      <a class="next" href="video-link.html"><span>下一个项目</span>临时视频链接 →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="doc-footer">
+  <div class="container doc-footer__in">
+    <span>© 2026 王欣宇 · PERSONAL ARCHIVE</span>
+    <a href="../index.html">返回档案</a>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/doc-i18n.js"></script>
+</body>
+</html>
