@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>开发时的一些小记 · 王欣宇</title>
-    <link>https://xinyuwang668-arch.github.io/personal-site/notes.html</link>
+    <link>https://alpader.lol/notes.html</link>
     <description>写代码时冒出来、又不好放进项目说明里的东西。不定期更新。</description>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 01 Nov 2026 09:00:00 +0800</lastBuildDate>
-    <atom:link href="https://xinyuwang668-arch.github.io/personal-site/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://alpader.lol/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
       <title>把 QQ 的 SILK 语音拆开，再拼成 WAV</title>
-      <link>https://xinyuwang668-arch.github.io/personal-site/notes.html#silk</link>
+      <link>https://alpader.lol/notes.html#silk</link>
       <guid isPermaLink="false">notes-silk</guid>
       <pubDate>Sun, 01 Nov 2026 09:00:00 +0800</pubDate>
       <description>SILK 是 QQ 一直带着的窄带编码。它不是标准 WAV，文件头有时是 #!SILK_V3，有时什么都没有——所以第一步不是解码，是认清它到底是什么。</description>
@@ -18,7 +18,7 @@
 
     <item>
       <title>一张图片里，最多能藏下多大的压缩包</title>
-      <link>https://xinyuwang668-arch.github.io/personal-site/notes.html#capacity</link>
+      <link>https://alpader.lol/notes.html#capacity</link>
       <guid isPermaLink="false">notes-capacity</guid>
       <pubDate>Thu, 15 Oct 2026 09:00:00 +0800</pubDate>
       <description>把数据追加到文件末尾，图片仍然能正常打开，因为解码器读到图像数据结束就停了。能藏多少，取决于文件系统和别人愿意接收多大的图片。</description>
@@ -26,7 +26,7 @@
 
     <item>
       <title>用 cloudflared 给本地视频开一扇临时的门</title>
-      <link>https://xinyuwang668-arch.github.io/personal-site/notes.html#tunnel</link>
+      <link>https://alpader.lol/notes.html#tunnel</link>
       <guid isPermaLink="false">notes-tunnel</guid>
       <pubDate>Tue, 15 Sep 2026 09:00:00 +0800</pubDate>
       <description>需求很简单：把本机一个视频发给别人看，又不想传到任何平台。Flask 起一个只听 127.0.0.1 的服务，cloudflared 把它映射到公网，链接带随机 token，过期作废。</description>
@@ -34,7 +34,7 @@
 
     <item>
       <title>从 .py 到安装包：PyInstaller 与 Inno Setup 踩坑记</title>
-      <link>https://xinyuwang668-arch.github.io/personal-site/notes.html#packaging</link>
+      <link>https://alpader.lol/notes.html#packaging</link>
       <guid isPermaLink="false">notes-packaging</guid>
       <pubDate>Wed, 15 Jul 2026 09:00:00 +0800</pubDate>
       <description>PyInstaller 把 Python 变成 exe，Inno Setup 把 exe 变成「能装、能卸、有开始菜单」的安装包。前者解决依赖，后者解决体面。</description>
@@ -42,7 +42,7 @@
 
     <item>
       <title>为什么我的每个小工具都是深色的</title>
-      <link>https://xinyuwang668-arch.github.io/personal-site/notes.html#darkui</link>
+      <link>https://alpader.lol/notes.html#darkui</link>
       <guid isPermaLink="false">notes-darkui</guid>
       <pubDate>Mon, 15 Jun 2026 09:00:00 +0800</pubDate>
       <description>不是跟风。这些小工具大多在晚上用：导语音、转 GIF、整理藏品，屏幕旁边通常只有一盏台灯。深色界面不刺眼，颜色也更容易做得安静。</description>

@@ -2,7 +2,7 @@
 """Point the site at its public origin.
 
 Usage:
-    python tools/set-site-url.py https://xinyuwang668-arch.github.io/personal-site
+    python tools/set-site-url.py https://alpader.lol
 
 What it rewrites:
     - og:image / twitter:image in index.html, notes.html and works/*.html

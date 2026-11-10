@@ -5,7 +5,7 @@ Art Deco 的纸色与黄铜、1960s 太空时代的拱门与徽章是底色；�
 火车票与一次掷骰子把它撕开；关于区那张插画里则多了一扇漂浮的门和一只云里的眼睛。
 纯静态、零依赖，把 `personal-site/` 整个目录丢到任何静态托管上就能跑。
 
-**线上地址**：https://xinyuwang668-arch.github.io/personal-site/
+**线上地址**：https://alpader.lol/
 （GitHub Pages，仓库 `personal-site`，`main` 分支根目录）
 
 > 姓名、项目、时间线、邮箱、作品详情页与手记都已按真实信息填过；
@@ -195,7 +195,7 @@ personal-site/
   换颜色直接改里面的十六进制值。
 - 分享大图是 `assets/og.png`（2400×1260），首页与 7 个详情页的 `og:image` 都已指向它。
   换图时保持 2:1，或同步改 `<meta property="og:image:width/height">`。
-  现在的地址是 `https://xinyuwang668-arch.github.io/personal-site/assets/og.png`（绝对地址）；
+  现在的地址是 `https://alpader.lol/assets/og.png`（绝对地址）；
   换部署地址时跑 `tools/set-site-url.py`，它会一起改掉。
 - 首页另有 `JSON-LD` 的 `Person` 结构化数据（姓名、身份、GitHub），改社交账号时记得一起改。
 
@@ -203,7 +203,7 @@ personal-site/
 
 - `404.html` 是给静态托管用的错误页：GitHub Pages、Netlify、Cloudflare Pages 会自动识别根目录的 `404.html`。
 - `feed.xml` 是 5 篇手记的 RSS 2.0，`sitemap.xml` 收录 8 个 URL。
-  两者现在指向 `https://xinyuwang668-arch.github.io/personal-site`；
+  两者现在指向 `https://alpader.lol`；
   换地址时跑一次 `tools/set-site-url.py`，不要手改。
 - 首页 `<head>` 有 `<link rel="alternate" type="application/rss+xml">`，页脚也放了 RSS 入口。
 - `@media print` 会去掉噪点、导航、邮戳与胶带，改成白底黑字，并给章节分页；
@@ -265,7 +265,7 @@ personal-site/
 1. 新建一个 **public** 仓库，名字比如 `personal-site`；
 2. 把 `personal-site/` 里的内容推到仓库根目录；
 3. 仓库 Settings → Pages → Source 选 `Deploy from a branch`，分支 `main`、目录 `/ (root)`；
-4. 等一分钟，地址就是 `https://xinyuwang668-arch.github.io/personal-site/`。
+4. 等一分钟，地址就是 `https://alpader.lol/`。
 
 **方案二：Netlify / Cloudflare Pages**
 
