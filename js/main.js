@@ -1,5 +1,5 @@
 /* =========================================================
-   王欣宇 · 个人档案 — interaction layer
+   Alpader · 个人档案 — interaction layer
    No dependencies.
    ========================================================= */
 (function () {
@@ -275,7 +275,7 @@
   /* ---------- console ---------- */
 
   if (window.console && console.log) {
-    console.log('%c WANG XINYU %c personal archive / 2027 ',
+    console.log('%c ALPADER %c personal archive / 2027 ',
       'background:#17352e;color:#ede4d0;padding:6px 10px;font-family:monospace',
       'background:#b08442;color:#0f2721;padding:6px 10px;font-family:monospace');
     console.log('%c 档案在控制台留了一盏灯。', 'color:#8a7d5e;font-size:11px;letter-spacing:.14em');

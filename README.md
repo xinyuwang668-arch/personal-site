@@ -1,4 +1,4 @@
-# 王欣宇 · 个人档案 / Wang Xinyu
+# Alpader · 个人档案 / Alpader
 
 一个「复古未来主义打底、达达拼贴为主、少量超现实」的单页个人网站。
 Art Deco 的纸色与黄铜、1960s 太空时代的拱门与徽章是底色；报纸剪贴、错位字母、
@@ -51,6 +51,7 @@ personal-site/
 ├── css/style.css       # 设计系统、版式、动效、响应式、打印样式
 ├── js/i18n.js          # 中 / 英 / 日 / 韩 词典与切换逻辑
 ├── js/doc-i18n.js      # 详情页（项目页 + 手记）的英 / 日 / 韩补充词条
+├── js/name-rain.js     # 背后飘过的游戏主角名（名字与游戏简称都在文件顶部）
 ├── js/main.js          # 滚动进度、导航高亮、移动菜单、进场动画、掷骰子与拖拽、彩蛋
 ├── tools/set-site-url.py  # 一键把 og / RSS / sitemap 指到正式地址
 ├── .site-url           # 上一步记住的地址（脚本自己生成）
@@ -87,11 +88,11 @@ personal-site/
 
 | 位置 | 现在的内容 | 说明 |
 | --- | --- | --- |
-| `<title>` / `<meta name="description">` | 王欣宇 · 个人档案 | 浏览器标题与搜索结果摘要 |
+| `<title>` / `<meta name="description">` | Alpader · 个人档案 | 浏览器标题与搜索结果摘要 |
 | `<meta property="og:*">` | 同上 | 分享到社交平台时的标题与描述 |
-| `.brand__cn` / `.brand__en` | 王欣宇 / WANG XINYU | 左上角标志 |
-| `.hero__name` | 王欣宇 | 首屏大字 |
-| `.hero__latin` | Wang Xinyu · Student Developer | 名字的拉丁转写与身份 |
+| `.brand__cn` / `.brand__en` | Alpader / ALPADER | 左上角标志 |
+| `.hero__name` | Alpader | 首屏大字 |
+| `.hero__latin` | Alpader · Student Developer | 名字的拉丁转写与身份 |
 
 ### 2. 文案
 
@@ -101,7 +102,7 @@ personal-site/
 - 联系：`.contact__title`、`.contact__desc`、`.contact__mail`。
 - 页脚：`.footer` 的版权行、档案编号与邮戳年份。
 
-> 首屏徽章外圈的 `WANG XINYU · PERSONAL ARCHIVE · EST. 2026 · CHINA`
+> 首屏徽章外圈的 `ALPADER · PERSONAL ARCHIVE · EST. 2026 · CHINA`
 > 在 `#ringPath` 后的 `<textPath>` 里，改文案时注意路径长度，太长会被裁掉。
 
 ### 3. 达达插页（#dada）
@@ -171,8 +172,14 @@ personal-site/
 - 邮箱：`xinyuwang668@gmail.com`，全站五处（两处 `mailto:`、两处可见文字、移动菜单一处），
   换地址时一起替换。点击邮箱链接会照常唤起邮件应用，同时把地址复制到剪贴板并在底部提示；
   电脑上没装邮件客户端也不会「点了没反应」。
-- GitHub 已指向 `https://github.com/xinyuwang668-arch`；要加 B 站 / 博客，复制一行 `.link` 即可。
-- `.links` 是两列网格，删到只剩一条也不会错位。
+- GitHub 已指向 `https://github.com/xinyuwang668-arch`。
+- 社交链接（都在首页 `.links` 里，改用户名/UID 时连 `href` 一起改）：
+  - Instagram：`https://www.instagram.com/alpader_24/`
+  - Pixiv：`https://www.pixiv.net/users/81703843`
+  - Steam（老账号）：`https://steamcommunity.com/profiles/76561199488538160`
+  - Steam（现账号）：`https://steamcommunity.com/profiles/76561199672460754`
+  - Bilibili：`https://space.bilibili.com/1180589184`
+- `.links` 是两列网格，最后一条会自动占满整行；删到只剩一条也不会错位。
 
 ### 9. 配色与字体
 
@@ -197,9 +204,18 @@ personal-site/
   换图时保持 2:1，或同步改 `<meta property="og:image:width/height">`。
   现在的地址是 `https://alpader.lol/assets/og.png`（绝对地址）；
   换部署地址时跑 `tools/set-site-url.py`，它会一起改掉。
-- 首页另有 `JSON-LD` 的 `Person` 结构化数据（姓名、身份、GitHub），改社交账号时记得一起改。
+- 首页另有 `JSON-LD` 的 `Person` 结构化数据（姓名、身份、GitHub / Instagram / Pixiv / Steam ×2 / Bilibili），改社交账号时记得一起改。
 
-### 11. 站点附件：404 / RSS / sitemap / 打印
+### 11. 背后飘过的名字（name-rain）
+
+- 名单在 `js/name-rain.js` 顶部的 `GAMES` 数组里，格式是 `['主角名', '游戏简称']`；
+  想加就加一行，想删就删一行。
+- 脚本会随机打乱、随机高度、随机速度与方向，生成在 `.name-rain` 图层里；
+  桌面 36 条、窄屏 16 条，颜色与字号自动变淡变小。
+- 图层 `z-index: 0`，首页与所有详情页的正文在它上面；`pointer-events: none`，不会挡住点击。
+- `prefers-reduced-motion: reduce` 时整层不生成，打印时也会隐藏。
+
+### 12. 站点附件：404 / RSS / sitemap / 打印
 
 - `404.html` 是给静态托管用的错误页：GitHub Pages、Netlify、Cloudflare Pages 会自动识别根目录的 `404.html`。
 - `feed.xml` 是 5 篇手记的 RSS 2.0，`sitemap.xml` 收录 8 个 URL。
@@ -247,7 +263,7 @@ personal-site/
 
 故意不翻译的部分：
 
-- 品牌名「王欣宇」、首屏大字与徽章上的 `WANG XINYU`（名字保持一致，做视觉锚点）；
+- 品牌名「Alpader」、首屏大字与徽章上的 `ALPADER`（名字保持一致，做视觉锚点）；
 - 语言按钮本身；
 - 作品卡标题后的英文小字（英文界面下自动隐藏，避免重复）。
 

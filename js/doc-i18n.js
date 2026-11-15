@@ -2,7 +2,7 @@
    Loaded after js/i18n.js; merges into WXI18N and re-applies the current language. */
 (function () {
   const EN = {
-    "王欣宇": "Wang Xinyu",
+    "Alpader": "Alpader",
     "← 全部作品": "← All works",
     "年份": "Year",
     "技术": "Stack",
@@ -21,7 +21,7 @@
     "已打包 exe": "exe build",
     "本地可用": "Local build",
     "在线（Render）": "Online (Render)",
-    "© 2026 王欣宇 · PERSONAL ARCHIVE": "© 2026 Wang Xinyu · PERSONAL ARCHIVE",
+    "© 2026 Alpader · PERSONAL ARCHIVE": "© 2026 Alpader · PERSONAL ARCHIVE",
 
     "藏图": "Hide-Zip Image",
     "把一个压缩包藏进一张图片里：图片照常打开，看不出异样；需要的时候，再把包原样取出来。": "Hide an archive inside an image. The picture still opens as a picture, with nothing to notice; when you need it back, the archive comes out exactly as it went in.",
@@ -35,7 +35,7 @@
     "Windows 会缓存缩略图，替换图片之后要主动刷新，否则看起来像没成功。": "Windows caches thumbnails. After replacing an image you have to refresh, or it looks like nothing happened.",
     "安装包用 Inno Setup 打。卸载时只删程序，不动用户藏过的图——这一点写在安装向导里。": "The installer is built with Inno Setup. Uninstalling removes the app but never the images you hid things in — the wizard says so.",
     "临时视频链接 →": "Video Link Server →",
-    "藏图 · 项目 / 王欣宇": "Hide-Zip Image · Project / Wang Xinyu",
+    "藏图 · 项目 / Alpader": "Hide-Zip Image · Project / Alpader",
     "藏图 Hide-Zip Image：把压缩包藏进图片、再用一个密码完整取出来。": "Hide-Zip Image: hide an archive inside a picture, then take it out whole with one password.",
 
     "临时视频链接": "Video Link Server",
@@ -52,7 +52,7 @@
     "安装包同样用 Inno Setup，安装完会在开始菜单留一个入口，卸载时结束进程。": "The installer is Inno Setup again: a Start-menu entry after install, and the process is ended on uninstall.",
     "← 藏图": "← Hide-Zip Image",
     "喵喵秘藏 →": "NekoVault →",
-    "临时视频链接 · 项目 / 王欣宇": "Video Link Server · Project / Wang Xinyu",
+    "临时视频链接 · 项目 / Alpader": "Video Link Server · Project / Alpader",
     "临时视频链接：把本机视频变成一个会过期的链接，发出去就能看。": "Video Link Server: turn a local video into a link that expires, send it, and it plays.",
 
     "喵喵秘藏": "NekoVault",
@@ -70,7 +70,7 @@
     "主题指南单独写在": "The theme guide lives separately in",
     "里，方便以后加第三套、第四套配色。": ", so a third or fourth palette can be added later.",
     "← 临时视频链接": "← Video Link Server",
-    "喵喵秘藏 · 项目 / 王欣宇": "NekoVault · Project / Wang Xinyu",
+    "喵喵秘藏 · 项目 / Alpader": "NekoVault · Project / Alpader",
     "喵喵秘藏 NekoVault：本地优先的个人藏品柜，加密、备份、可导出。": "NekoVault: a local-first personal collection cabinet — encrypted, backed up, exportable.",
 
     "拖一段视频进来，选起止、帧率和宽度，导出 GIF；不用另外装 ffmpeg。": "Drop in a video, pick start and end, frame rate and width, and export a GIF — no separate ffmpeg install.",
@@ -89,7 +89,7 @@
     "导出失败时保留临时文件，方便下一次直接重试，不用重新解码一遍。": "On failure the temp files stay, so a retry doesn’t decode everything again.",
     "← 喵喵秘藏": "← NekoVault",
     "语音转换器 →": "Silk2Wav →",
-    "GIF Studio Pro · 项目 / 王欣宇": "GIF Studio Pro · Project / Wang Xinyu",
+    "GIF Studio Pro · 项目 / Alpader": "GIF Studio Pro · Project / Alpader",
     "GIF Studio Pro：把一段视频变成 GIF，选起止、帧率、宽度，导出带调色板的动图。": "GIF Studio Pro: turn a video into a GIF — pick the range, frame rate, and width, and export a palette-based animation.",
 
     "语音转换器": "Silk2Wav",
@@ -105,7 +105,7 @@
     "中文路径和空格路径都要试一遍，不能只在本机看着正常就算完。": "Chinese paths and paths with spaces both have to be tested — working on this machine isn’t proof.",
     "转换失败的文件会留在列表里并标红，原因写清楚，方便单独重试。": "Failed files stay in the list, marked red with the reason, ready for a retry.",
     "在线语音转换 →": "QQVoice Web →",
-    "语音转换器 · 项目 / 王欣宇": "Silk2Wav · Project / Wang Xinyu",
+    "语音转换器 · 项目 / Alpader": "Silk2Wav · Project / Alpader",
     "语音转换器 silk2wav：把 QQ 的 SILK 语音批量转成 WAV。": "Silk2Wav: batch-convert QQ SILK voice messages to WAV.",
 
     "在线语音转换": "QQVoice Web",
@@ -123,7 +123,7 @@
     "这个页面和桌面版共用同一套解码逻辑，只是把「保存到本地」换成了「打包给你」。": "This page shares the decoder with the desktop build; only “save locally” became “zip it for you”.",
     "← 语音转换器": "← Silk2Wav",
     "全部作品 →": "All works →",
-    "在线语音转换 · 项目 / 王欣宇": "QQVoice Web · Project / Wang Xinyu",
+    "在线语音转换 · 项目 / Alpader": "QQVoice Web · Project / Alpader",
     "在线语音转换 qqvoice-web：打开网页，上传 SILK 语音，转成 WAV 打包下载。": "QQVoice Web: open the page, upload SILK voice, and download the WAVs as a zip.",
 
     "← 返回手记": "← Back to notes",
@@ -167,7 +167,7 @@
     "← 首页手记": "← Notes home",
     "下一页": "Next",
     "联系方式 →": "Contact →",
-    "开发时的一些小记 · 王欣宇": "Notes from building things · Wang Xinyu",
+    "开发时的一些小记 · Alpader": "Notes from building things · Alpader",
     "开发手记：SILK 语音、图片藏包、cloudflared 隧道、PyInstaller 打包，以及为什么工具都是深色的。": "Dev notes: SILK voice, hiding archives in images, cloudflared tunnels, PyInstaller packaging, and why the tools are dark.",
     "藏图 V3.0.0 主界面：拖入图片与压缩包，勾选加密后导出。": "The Hide-Zip V3.0.0 window: drop an image and an archive, tick the encryption box, export.",
     "临时视频链接 v2.0：有效期、Token 与公网地址都在同一屏。": "Video Link Server v2.0: lifetime, token, and public URL on one screen.",
@@ -179,7 +179,7 @@
   };
 
   const JA = {
-    "王欣宇": "王欣宇",
+    "Alpader": "Alpader",
     "← 全部作品": "← 作品一覧",
     "年份": "年",
     "技术": "技術",
@@ -198,7 +198,7 @@
     "已打包 exe": "exe 配布",
     "本地可用": "ローカル版",
     "在线（Render）": "オンライン（Render）",
-    "© 2026 王欣宇 · PERSONAL ARCHIVE": "© 2026 王欣宇 · PERSONAL ARCHIVE",
+    "© 2026 Alpader · PERSONAL ARCHIVE": "© 2026 Alpader · PERSONAL ARCHIVE",
 
     "藏图": "Hide-Zip Image",
     "把一个压缩包藏进一张图片里：图片照常打开，看不出异样；需要的时候，再把包原样取出来。": "画像の中に圧縮ファイルを隠す。画像はそのまま開けて、見た目に変化はない。必要なときに、中身をそのまま取り出せる。",
@@ -212,7 +212,7 @@
     "Windows 会缓存缩略图，替换图片之后要主动刷新，否则看起来像没成功。": "Windows はサムネイルをキャッシュする。画像を差し替えたら再読み込みしないと、失敗したように見える。",
     "安装包用 Inno Setup 打。卸载时只删程序，不动用户藏过的图——这一点写在安装向导里。": "インストーラーは Inno Setup。アンインストールではアプリだけを消し、ユーザーが隠した画像には触れない——その旨をウィザードに書いてある。",
     "临时视频链接 →": "動画リンクサーバー →",
-    "藏图 · 项目 / 王欣宇": "Hide-Zip Image · プロジェクト / 王欣宇",
+    "藏图 · 项目 / Alpader": "Hide-Zip Image · プロジェクト / Alpader",
     "藏图 Hide-Zip Image：把压缩包藏进图片、再用一个密码完整取出来。": "Hide-Zip Image：圧縮ファイルを画像に隠し、パスワード一つで完全に取り出す。",
 
     "临时视频链接": "動画リンクサーバー",
@@ -229,7 +229,7 @@
     "安装包同样用 Inno Setup，安装完会在开始菜单留一个入口，卸载时结束进程。": "インストーラーも Inno Setup。インストール後はスタートメニューに入口を残し、アンインストール時にプロセスを終了する。",
     "← 藏图": "← Hide-Zip Image",
     "喵喵秘藏 →": "NekoVault →",
-    "临时视频链接 · 项目 / 王欣宇": "動画リンクサーバー · プロジェクト / 王欣宇",
+    "临时视频链接 · 项目 / Alpader": "動画リンクサーバー · プロジェクト / Alpader",
     "临时视频链接：把本机视频变成一个会过期的链接，发出去就能看。": "動画リンクサーバー：ローカル動画を期限付きリンクにして、送れば見られる。",
 
     "喵喵秘藏": "NekoVault",
@@ -247,7 +247,7 @@
     "主题指南单独写在": "テーマガイドは別途",
     "里，方便以后加第三套、第四套配色。": "にあり、三色目、四色目を足しやすくしてある。",
     "← 临时视频链接": "← 動画リンクサーバー",
-    "喵喵秘藏 · 项目 / 王欣宇": "NekoVault · プロジェクト / 王欣宇",
+    "喵喵秘藏 · 项目 / Alpader": "NekoVault · プロジェクト / Alpader",
     "喵喵秘藏 NekoVault：本地优先的个人藏品柜，加密、备份、可导出。": "NekoVault：ローカル優先の収蔵庫。暗号化、バックアップ、書き出し。",
 
     "拖一段视频进来，选起止、帧率和宽度，导出 GIF；不用另外装 ffmpeg。": "動画を放り込み、開始と終了、フレームレート、幅を選んで GIF を書き出す。ffmpeg を別途入れる必要はない。",
@@ -266,7 +266,7 @@
     "导出失败时保留临时文件，方便下一次直接重试，不用重新解码一遍。": "失敗時は一時ファイルを残し、次回そのまま再試行できるようにする。最初から復号し直さない。",
     "← 喵喵秘藏": "← NekoVault",
     "语音转换器 →": "Silk2Wav →",
-    "GIF Studio Pro · 项目 / 王欣宇": "GIF Studio Pro · プロジェクト / 王欣宇",
+    "GIF Studio Pro · 项目 / Alpader": "GIF Studio Pro · プロジェクト / Alpader",
     "GIF Studio Pro：把一段视频变成 GIF，选起止、帧率、宽度，导出带调色板的动图。": "GIF Studio Pro：動画を GIF に。範囲、フレームレート、幅を選び、パレット付きで書き出す。",
 
     "语音转换器": "Silk2Wav",
@@ -282,7 +282,7 @@
     "中文路径和空格路径都要试一遍，不能只在本机看着正常就算完。": "中国語パスと空白入りパスを両方試す。この機械で動くだけでは証明にならない。",
     "转换失败的文件会留在列表里并标红，原因写清楚，方便单独重试。": "失敗したファイルはリストに残して赤くし、理由を書く。個別に再試行できるように。",
     "在线语音转换 →": "QQVoice Web →",
-    "语音转换器 · 项目 / 王欣宇": "Silk2Wav · プロジェクト / 王欣宇",
+    "语音转换器 · 项目 / Alpader": "Silk2Wav · プロジェクト / Alpader",
     "语音转换器 silk2wav：把 QQ 的 SILK 语音批量转成 WAV。": "Silk2Wav：QQ の SILK 音声をまとめて WAV に。",
 
     "在线语音转换": "QQVoice Web",
@@ -300,7 +300,7 @@
     "这个页面和桌面版共用同一套解码逻辑，只是把「保存到本地」换成了「打包给你」。": "このページはデスクトップ版と同じ復号ロジックを共有し、「ローカルに保存」を「zip にして返す」に変えただけ。",
     "← 语音转换器": "← Silk2Wav",
     "全部作品 →": "作品一覧 →",
-    "在线语音转换 · 项目 / 王欣宇": "QQVoice Web · プロジェクト / 王欣宇",
+    "在线语音转换 · 项目 / Alpader": "QQVoice Web · プロジェクト / Alpader",
     "在线语音转换 qqvoice-web：打开网页，上传 SILK 语音，转成 WAV 打包下载。": "QQVoice Web：ページを開き、SILK 音声を上げ、WAV を zip で落とす。",
 
     "← 返回手记": "← 手記へ",
@@ -344,7 +344,7 @@
     "← 首页手记": "← 手記トップ",
     "下一页": "次へ",
     "联系方式 →": "連絡先 →",
-    "开发时的一些小记 · 王欣宇": "作っているときの小さな記録 · 王欣宇",
+    "开发时的一些小记 · Alpader": "作っているときの小さな記録 · Alpader",
     "开发手记：SILK 语音、图片藏包、cloudflared 隧道、PyInstaller 打包，以及为什么工具都是深色的。": "開発手記：SILK 音声、画像への隠蔽、cloudflared トンネル、PyInstaller のパッケージ、そして道具が暗い理由。",
     "藏图 V3.0.0 主界面：拖入图片与压缩包，勾选加密后导出。": "HideZipImage V3.0.0 の画面。画像と圧縮ファイルを置き、暗号化を選んで書き出す。",
     "临时视频链接 v2.0：有效期、Token 与公网地址都在同一屏。": "Video Link Server v2.0。有効期限、トークン、公開 URL が同じ画面にそろう。",
@@ -355,7 +355,7 @@
     "上传页：拖入 .silk、点开始转换，完成后下载 zip。": "アップロード画面。.silk を置いて変換し、zip で受け取る。"
   };
   const KO = {
-    "王欣宇": "왕신우",
+    "Alpader": "알파더",
     "← 全部作品": "← 모든 작업",
     "年份": "연도",
     "技术": "기술",
@@ -374,7 +374,7 @@
     "已打包 exe": "exe 배포",
     "本地可用": "로컬 버전",
     "在线（Render）": "온라인 (Render)",
-    "© 2026 王欣宇 · PERSONAL ARCHIVE": "© 2026 왕신우 · PERSONAL ARCHIVE",
+    "© 2026 Alpader · PERSONAL ARCHIVE": "© 2026 알파더 · PERSONAL ARCHIVE",
 
     "藏图": "Hide-Zip Image",
     "把一个压缩包藏进一张图片里：图片照常打开，看不出异样；需要的时候，再把包原样取出来。": "이미지 안에 압축 파일을 숨긴다. 사진은 그대로 열리고 겉보기엔 아무 차이가 없다. 필요할 때 원래 그대로 꺼내면 된다.",
@@ -388,7 +388,7 @@
     "Windows 会缓存缩略图，替换图片之后要主动刷新，否则看起来像没成功。": "Windows는 썸네일을 캐시한다. 이미지를 바꾼 뒤 새로 고치지 않으면 실패한 것처럼 보인다.",
     "安装包用 Inno Setup 打。卸载时只删程序，不动用户藏过的图——这一点写在安装向导里。": "설치 프로그램은 Inno Setup. 제거할 때 앱만 지우고 사용자가 숨긴 이미지는 건드리지 않는다 — 설치 마법사에 그렇게 적혀 있다.",
     "临时视频链接 →": "동영상 링크 서버 →",
-    "藏图 · 项目 / 王欣宇": "Hide-Zip Image · 프로젝트 / 왕신우",
+    "藏图 · 项目 / Alpader": "Hide-Zip Image · 프로젝트 / 알파더",
     "藏图 Hide-Zip Image：把压缩包藏进图片、再用一个密码完整取出来。": "Hide-Zip Image: 압축 파일을 이미지에 숨기고 비밀번호 하나로 온전히 꺼낸다.",
 
     "临时视频链接": "동영상 링크 서버",
@@ -405,7 +405,7 @@
     "安装包同样用 Inno Setup，安装完会在开始菜单留一个入口，卸载时结束进程。": "설치 프로그램도 Inno Setup. 설치 후 시작 메뉴에 입구를 남기고, 제거 시 프로세스를 끝낸다.",
     "← 藏图": "← Hide-Zip Image",
     "喵喵秘藏 →": "NekoVault →",
-    "临时视频链接 · 项目 / 王欣宇": "동영상 링크 서버 · 프로젝트 / 왕신우",
+    "临时视频链接 · 项目 / Alpader": "동영상 링크 서버 · 프로젝트 / 알파더",
     "临时视频链接：把本机视频变成一个会过期的链接，发出去就能看。": "동영상 링크 서버: 로컬 동영상을 만료되는 링크로 만들어 보내면 바로 본다.",
 
     "喵喵秘藏": "NekoVault",
@@ -423,7 +423,7 @@
     "主题指南单独写在": "테마 가이드는 따로",
     "里，方便以后加第三套、第四套配色。": "에 있으며, 세 번째·네 번째 배색을 더하기 쉽게 해 두었다.",
     "← 临时视频链接": "← 동영상 링크 서버",
-    "喵喵秘藏 · 项目 / 王欣宇": "NekoVault · 프로젝트 / 왕신우",
+    "喵喵秘藏 · 项目 / Alpader": "NekoVault · 프로젝트 / 알파더",
     "喵喵秘藏 NekoVault：本地优先的个人藏品柜，加密、备份、可导出。": "NekoVault: 로컬 우선 개인 수집함. 암호화, 백업, 내보내기.",
 
     "拖一段视频进来，选起止、帧率和宽度，导出 GIF；不用另外装 ffmpeg。": "동영상을 끌어다 놓고 시작·끝, 프레임레이트, 너비를 골라 GIF로 내보낸다. ffmpeg를 따로 설치할 필요 없다.",
@@ -442,7 +442,7 @@
     "导出失败时保留临时文件，方便下一次直接重试，不用重新解码一遍。": "실패 시 임시 파일을 남겨 다음에 바로 재시도할 수 있게 한다. 처음부터 다시 디코딩하지 않는다.",
     "← 喵喵秘藏": "← NekoVault",
     "语音转换器 →": "Silk2Wav →",
-    "GIF Studio Pro · 项目 / 王欣宇": "GIF Studio Pro · 프로젝트 / 왕신우",
+    "GIF Studio Pro · 项目 / Alpader": "GIF Studio Pro · 프로젝트 / 알파더",
     "GIF Studio Pro：把一段视频变成 GIF，选起止、帧率、宽度，导出带调色板的动图。": "GIF Studio Pro: 동영상을 GIF로. 구간, 프레임레이트, 너비를 골라 팔레트와 함께 내보낸다.",
 
     "语音转换器": "Silk2Wav",
@@ -458,7 +458,7 @@
     "中文路径和空格路径都要试一遍，不能只在本机看着正常就算完。": "중국어 경로와 공백 경로를 모두 시험한다. 이 기기에서 된다고 끝난 게 아니다.",
     "转换失败的文件会留在列表里并标红，原因写清楚，方便单独重试。": "실패한 파일은 목록에 남겨 빨갛게 표시하고 이유를 적는다. 개별 재시도가 가능하도록.",
     "在线语音转换 →": "QQVoice Web →",
-    "语音转换器 · 项目 / 王欣宇": "Silk2Wav · 프로젝트 / 왕신우",
+    "语音转换器 · 项目 / Alpader": "Silk2Wav · 프로젝트 / 알파더",
     "语音转换器 silk2wav：把 QQ 的 SILK 语音批量转成 WAV。": "Silk2Wav: QQ의 SILK 음성을 일괄로 WAV로.",
 
     "在线语音转换": "QQVoice Web",
@@ -476,7 +476,7 @@
     "这个页面和桌面版共用同一套解码逻辑，只是把「保存到本地」换成了「打包给你」。": "이 페이지는 데스크톱판과 같은 디코딩 로직을 공유하고, '로컬에 저장'을 'zip으로 돌려주기'로 바꾼 것뿐이다.",
     "← 语音转换器": "← Silk2Wav",
     "全部作品 →": "모든 작업 →",
-    "在线语音转换 · 项目 / 王欣宇": "QQVoice Web · 프로젝트 / 왕신우",
+    "在线语音转换 · 项目 / Alpader": "QQVoice Web · 프로젝트 / 알파더",
     "在线语音转换 qqvoice-web：打开网页，上传 SILK 语音，转成 WAV 打包下载。": "QQVoice Web: 페이지를 열고 SILK 음성을 올려 WAV를 zip으로 받는다.",
 
     "← 返回手记": "← 노트로",
@@ -520,7 +520,7 @@
     "← 首页手记": "← 노트 첫 페이지",
     "下一页": "다음",
     "联系方式 →": "연락처 →",
-    "开发时的一些小记 · 王欣宇": "만들면서 적은 작은 노트 · 왕신우",
+    "开发时的一些小记 · Alpader": "만들면서 적은 작은 노트 · 알파더",
     "开发手记：SILK 语音、图片藏包、cloudflared 隧道、PyInstaller 打包，以及为什么工具都是深色的。": "개발 노트: SILK 음성, 이미지에 압축 파일 숨기기, cloudflared 터널, PyInstaller 패키징, 그리고 도구가 어두운 이유.",
     "藏图 V3.0.0 主界面：拖入图片与压缩包，勾选加密后导出。": "HideZipImage V3.0.0 화면. 이미지와 압축 파일을 넣고 암호화를 켠 뒤 내보낸다.",
     "临时视频链接 v2.0：有效期、Token 与公网地址都在同一屏。": "Video Link Server v2.0. 유효 시간, 토큰, 공개 주소가 한 화면에 모인다.",

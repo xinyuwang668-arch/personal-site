@@ -1,5 +1,5 @@
 /* =========================================================
-   王欣宇 · 个人档案 — i18n module
+   Alpader · 个人档案 — i18n module
    中文是源语言；英/日/韩三份词典按「中文原文」匹配，
    改文案时记得同步改字典（见 README「多语言」一节）。
    ========================================================= */
@@ -35,7 +35,7 @@
     '在写新东西': 'Building something',
     'FIG. 00 — 时间守护者徽记 / 手绘于 2026 年冬': "FIG. 00 — Timekeeper's emblem / drawn in the winter of 2026",
     'THE PAST IS A FOREIGN COUNTRY — 未来尚未发生，过去仍在生长':
-      'THE PAST IS A FOREIGN COUNTRY — the past is still growing.',
+      'THE PAST IS A FOREIGN COUNTRY — still growing.',
 
     /* ---- 跑马灯 ---- */
     '桌面工具': 'desktop tools',
@@ -48,9 +48,9 @@
     /* ---- 关于 ---- */
     '在题海与终端之间，': 'Between exam papers and the terminal,',
     '造一些自己用得上的东西。': 'I build things I actually need.',
-    '王欣宇，中国，2026': 'Wang Xinyu, China, 2026',
-    '我是王欣宇，一个高三学生，也是这些工具的作者。':
-      "I'm Wang Xinyu, a high-school senior and the author of these tools.",
+    'Alpader，中国，2026': 'Alpader, China, 2026',
+    '我是 Alpader，一个高三学生，也是这些工具的作者。':
+      "I'm Alpader, a high-school senior and the author of these tools.",
     '写代码是从一个小脚本开始的：想批量转 QQ 语音，就去看 SILK 格式； 想给朋友分享一段视频，就去学 Flask。后来慢慢学会做界面、打包 exe、 写安装包，也学会了在凌晨一点和报错对视。':
       'It started with a small script: I wanted to batch-convert QQ voice messages, so I read up on the SILK format; I wanted to share a video with a friend, so I learned Flask. Later came interfaces, exe packaging and installers — and staring down error messages at one in the morning.',
     '我关心「做完」：一个工具不该停在 .py，它应该有图标、有安装包、有更新说明； 界面喜欢深色，文档喜欢写到半年后自己还能看懂。这个站也一样， 材料是纸、黄铜，和一点点不合时宜。':
@@ -185,7 +185,9 @@
       "I usually reply within two working days — if I don't, I'm probably sitting an exam.",
     '邮箱': 'Email',
     '写一封信': 'Send a letter',
-    '王欣宇 · 本站由手写 HTML 与一点耐心构成': 'Wang Xinyu · handwritten HTML and a little patience',
+  '老账号': 'Old account',
+  '现账号': 'Current account',
+    'Alpader · 本站由手写 HTML 与一点耐心构成': 'Alpader · handwritten HTML and a little patience',
 
     /* ---- 无障碍 ---- */
     '回到首页': 'Back to top',
@@ -197,9 +199,9 @@
     '复古海报风格的超现实插画：拱门、落日、漂浮的门与一只眼': 'Surreal retro poster: an arch, a setting sun, a floating door and an eye',
 
     /* ---- 标题与描述 ---- */
-    '王欣宇 · 个人档案 / Wang Xinyu': 'Wang Xinyu · Personal Archive',
-    '王欣宇，高三学生，写 Python 小工具。作品、开发笔记、项目年表，以及一个把时间折成纸飞机的个人站。':
-      'Wang Xinyu is a high-school senior in China who builds small Python tools. Projects, dev notes, a timeline of builds, and a personal site that folds time into a paper plane.',
+    'Alpader · 个人档案 / Personal Archive': 'Alpader · Personal Archive',
+    'Alpader，高三学生，写 Python 小工具。作品、开发笔记、项目年表，以及一个把时间折成纸飞机的个人站。':
+      'Alpader is a high-school senior in China who builds small Python tools. Projects, dev notes, a timeline of builds, and a personal site that folds time into a paper plane.',
 
     /* ---- 达达插页 ---- */
     '把句子剪碎，': 'Cut the sentence up,',
@@ -247,9 +249,9 @@
 
     '在题海与终端之间，': '問題集とターミナルのあいだで、',
     '造一些自己用得上的东西。': '自分に必要なものを作る。',
-    '王欣宇，中国，2026': '王欣宇、中国、2026',
-    '我是王欣宇，一个高三学生，也是这些工具的作者。':
-      '王欣宇です。高校3年生で、ここにあるツールの作者でもあります。',
+    'Alpader，中国，2026': 'Alpader、中国、2026',
+    '我是 Alpader，一个高三学生，也是这些工具的作者。':
+      'Alpaderです。高校3年生で、ここにあるツールの作者でもあります。',
     '写代码是从一个小脚本开始的：想批量转 QQ 语音，就去看 SILK 格式； 想给朋友分享一段视频，就去学 Flask。后来慢慢学会做界面、打包 exe、 写安装包，也学会了在凌晨一点和报错对视。':
       '始まりは小さなスクリプトでした。QQの音声をまとめて変換したくてSILK形式を調べ、友人に動画を共有したくてFlaskを覚えました。それからUI、exe化、インストーラ作りを少しずつ覚え、午前1時にエラーメッセージと睨めっこする術も覚えました。',
     '我关心「做完」：一个工具不该停在 .py，它应该有图标、有安装包、有更新说明； 界面喜欢深色，文档喜欢写到半年后自己还能看懂。这个站也一样， 材料是纸、黄铜，和一点点不合时宜。':
@@ -377,7 +379,9 @@
       'たいてい2営業日以内に返します——返事がなければ、たぶん試験中です。',
     '邮箱': 'メール',
     '写一封信': '手紙を送る',
-    '王欣宇 · 本站由手写 HTML 与一点耐心构成': '王欣宇 · 手書きのHTMLと少しの忍耐でできています',
+  '老账号': '旧アカウント',
+  '现账号': '現行アカウント',
+    'Alpader · 本站由手写 HTML 与一点耐心构成': 'Alpader · 手書きのHTMLと少しの忍耐でできています',
 
     '回到首页': 'トップへ戻る',
     '主导航': 'メインナビゲーション',
@@ -387,9 +391,9 @@
     '装饰艺术风格的档案徽章：同心圆、刻度与星形': 'アールデコ風のアーカイブ記章：同心円、目盛り、星',
     '复古海报风格的超现实插画：拱门、落日、漂浮的门与一只眼': 'レトロポスター風の超現実的な挿絵：アーチ、落日、浮かぶ扉、そして一つの眼',
 
-    '王欣宇 · 个人档案 / Wang Xinyu': '王欣宇 · 個人アーカイブ / Wang Xinyu',
-    '王欣宇，高三学生，写 Python 小工具。作品、开发笔记、项目年表，以及一个把时间折成纸飞机的个人站。':
-      '王欣宇は中国の高校3年生。Pythonで小さなツールを作っています。作品、開発ノート、制作年表、そして時間を紙飛行機に折る個人サイト。',
+    'Alpader · 个人档案 / Personal Archive': 'Alpader · 個人アーカイブ / Alpader',
+    'Alpader，高三学生，写 Python 小工具。作品、开发笔记、项目年表，以及一个把时间折成纸飞机的个人站。':
+      'Alpaderは中国の高校3年生。Pythonで小さなツールを作っています。作品、開発ノート、制作年表、そして時間を紙飛行機に折る個人サイト。',
 
     /* ---- ダダの挿入ページ ---- */
     '把句子剪碎，': '文を切り刻んで、',
@@ -437,9 +441,9 @@
 
     '在题海与终端之间，': '문제집과 터미널 사이에서,',
     '造一些自己用得上的东西。': '내게 필요한 것을 만든다.',
-    '王欣宇，中国，2026': '왕신우, 중국, 2026',
-    '我是王欣宇，一个高三学生，也是这些工具的作者。':
-      '저는 왕신우입니다. 고3 학생이자 이 도구들을 만든 사람입니다.',
+    'Alpader，中国，2026': '알파더, 중국, 2026',
+    '我是 Alpader，一个高三学生，也是这些工具的作者。':
+      '저는 알파더입니다. 고3 학생이자 이 도구들을 만든 사람입니다.',
     '写代码是从一个小脚本开始的：想批量转 QQ 语音，就去看 SILK 格式； 想给朋友分享一段视频，就去学 Flask。后来慢慢学会做界面、打包 exe、 写安装包，也学会了在凌晨一点和报错对视。':
       '시작은 작은 스크립트 하나였습니다. QQ 음성을 한 번에 변환하고 싶어 SILK 포맷을 찾아봤고, 친구에게 영상을 보여주고 싶어 Flask를 배웠습니다. 그다음 UI, exe 패키징, 설치 파일 만들기를 익혔고, 새벽 한 시에 에러 메시지와 눈싸움하는 법도 익혔습니다.',
     '我关心「做完」：一个工具不该停在 .py，它应该有图标、有安装包、有更新说明； 界面喜欢深色，文档喜欢写到半年后自己还能看懂。这个站也一样， 材料是纸、黄铜，和一点点不合时宜。':
@@ -567,7 +571,9 @@
       '보통 두 영업일 안에 답장합니다 — 답이 없으면 아마 시험 중일 겁니다.',
     '邮箱': '이메일',
     '写一封信': '편지 보내기',
-    '王欣宇 · 本站由手写 HTML 与一点耐心构成': '왕신우 · 손으로 쓴 HTML과 약간의 인내로 만듦',
+  '老账号': '예전 계정',
+  '现账号': '현재 계정',
+    'Alpader · 本站由手写 HTML 与一点耐心构成': '알파더 · 손으로 쓴 HTML과 약간의 인내로 만듦',
 
     '回到首页': '맨 위로',
     '主导航': '주 내비게이션',
@@ -577,9 +583,9 @@
     '装饰艺术风格的档案徽章：同心圆、刻度与星形': '아르데코 아카이브 휘장: 동심원, 눈금, 별',
     '复古海报风格的超现实插画：拱门、落日、漂浮的门与一只眼': '레트로 포스터풍 초현실 삽화: 아치, 지는 해, 떠 있는 문, 그리고 하나의 눈',
 
-    '王欣宇 · 个人档案 / Wang Xinyu': '왕신우 · 개인 아카이브 / Wang Xinyu',
-    '王欣宇，高三学生，写 Python 小工具。作品、开发笔记、项目年表，以及一个把时间折成纸飞机的个人站。':
-      '왕신우는 중국의 고3 학생으로 작은 Python 도구를 만듭니다. 작업물, 개발 노트, 제작 연표, 그리고 시간을 종이비행기로 접는 개인 사이트.',
+    'Alpader · 个人档案 / Personal Archive': '알파더 · 개인 아카이브 / Alpader',
+    'Alpader，高三学生，写 Python 小工具。作品、开发笔记、项目年表，以及一个把时间折成纸飞机的个人站。':
+      '알파더는 중국의 고3 학생으로 작은 Python 도구를 만듭니다. 작업물, 개발 노트, 제작 연표, 그리고 시간을 종이비행기로 접는 개인 사이트.',
 
     /* ---- 다다 삽입면 ---- */
     '把句子剪碎，': '문장을 잘라 흩뿌리고,',
