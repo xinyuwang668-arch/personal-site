@@ -1,7 +1,7 @@
-/* 名字钟面：把视频里的游戏主角名摆成几圈同心环，像钟表一样各自转向。
+/* 名字弹幕：从视频里的游戏主角名里挑出来的，飘在页面背后，按彩虹色散开。
    每行格式：[中文主角名, 游戏简称, 英文名, 日文名, 韩文名]
    日/韩/英留空时回落到中文名；加新名字只要往 GAMES 里加一行。
-   切语言时（i18n.js 派发 languagechange）整层会换成对应语言的名字。 */
+   切换语言时（i18n.js 派发 languagechange）整层会换成对应语言的名字。 */
 (function () {
   'use strict';
 
@@ -46,13 +46,53 @@
     return a;
   }
 
+  var small = window.innerWidth < 760;
+  var pool = [];
+  var count = small ? 16 : 36;
+  while (pool.length < count) pool = pool.concat(shuffle(GAMES.slice()));
+  pool = pool.slice(0, count);
+
   var layer = document.createElement('div');
   layer.className = 'name-rain';
   layer.setAttribute('aria-hidden', 'true');
+
+  var items = pool.map(function (entry, i) {
+    var el = document.createElement('span');
+    el.className = 'name-rain__item';
+
+    var name = document.createElement('b');
+    var game = document.createElement('i');
+    game.textContent = entry[1];
+
+    el.appendChild(name);
+    el.appendChild(game);
+
+    /* 黄金角散布色相，一圈下来正好铺满彩虹，再加一点抖动避免太整齐 */
+    var hue = (i * 137.508 + Math.random() * 26) % 360;
+    el.style.setProperty('--rain-hue', hue.toFixed(1));
+    el.style.setProperty('--rain-hue-2', ((hue + 34 + Math.random() * 20) % 360).toFixed(1));
+
+    var dur = 32 + Math.random() * 46;
+    el.style.top = (2 + Math.random() * 93).toFixed(2) + '%';
+    el.style.animationDuration = dur.toFixed(1) + 's';
+    el.style.animationDelay = (-Math.random() * dur).toFixed(1) + 's';
+    el.style.fontSize = (small ? 9 + Math.random() * 4 : 12.5 + Math.random() * 6.5).toFixed(1) + 'px';
+    el.style.opacity = (small ? 0.50 + Math.random() * 0.34 : 0.60 + Math.random() * 0.34).toFixed(2);
+    if (Math.random() < 0.45) el.style.animationDirection = 'reverse';
+
+    layer.appendChild(el);
+    return { entry: entry, name: name };
+  });
+
   document.body.appendChild(layer);
 
-  var items = [];
-  var lang = currentLang();
+  function render(lang) {
+    var idx = NAME_INDEX[lang];
+    if (idx === undefined) idx = 0;
+    items.forEach(function (item) {
+      item.name.textContent = item.entry[idx] || item.entry[0];
+    });
+  }
 
   function currentLang() {
     if (window.WXI18N && window.WXI18N.lang) return window.WXI18N.lang;
@@ -60,120 +100,8 @@
     return NAME_INDEX[attr] !== undefined ? attr : 'zh';
   }
 
-  function render(code) {
-    var idx = NAME_INDEX[code];
-    if (idx === undefined) idx = 0;
-    items.forEach(function (item) {
-      item.name.textContent = item.entry[idx] || item.entry[0];
-    });
-  }
-
-  /* 徽章的圆心就是钟面的圆心；没有徽章的页面（404）用窗口中心 */
-  function center() {
-    var emblem = document.querySelector('.emblem');
-    var cx = window.innerWidth / 2;
-    var cy = window.innerHeight / 2;
-    var er = Math.min(window.innerWidth, window.innerHeight) * 0.3;
-    if (emblem) {
-      var box = emblem.getBoundingClientRect();
-      if (box.width > 40) {
-        cx = box.left + box.width / 2;
-        cy = box.top + box.height / 2;
-        er = box.width / 2;
-      }
-    }
-    return { x: cx, y: cy, r: er };
-  }
-
-  function build() {
-    layer.textContent = '';
-    items = [];
-
-    var c = center();
-    var small = window.innerWidth < 760;
-    var counts = small ? [5, 7] : [6, 8, 10];
-    var factors = small ? [0.62, 0.86] : [0.55, 0.75, 0.92];
-    var durs = small ? [85, 125] : [90, 130, 175];
-    var total = counts.reduce(function (a, b) { return a + b; }, 0);
-
-    /* 名字当钟面刻度：半径按徽章半径取比例，最外圈不出徽章 */
-    var base = c.r;
-
-    var pool = [];
-    while (pool.length < total) pool = pool.concat(shuffle(GAMES.slice()));
-    pool = pool.slice(0, total);
-
-    var gi = 0;
-    counts.forEach(function (count, k) {
-      var ring = document.createElement('div');
-      ring.className = 'name-rain__ring';
-      ring.style.left = c.x.toFixed(1) + 'px';
-      ring.style.top = c.y.toFixed(1) + 'px';
-      ring.style.animationDuration = durs[k] + 's';
-      ring.style.animationDirection = (k % 2) ? 'reverse' : 'normal';
-
-      var step = 360 / count;
-      var radius = base * factors[k];
-
-      for (var j = 0; j < count; j++) {
-        var entry = pool[gi++];
-        var angle = k * 31 + j * step + (Math.random() - 0.5) * step * 0.3;
-
-        var arm = document.createElement('div');
-        arm.className = 'name-rain__arm';
-        arm.style.transform =
-          'rotate(' + angle.toFixed(2) + 'deg) ' +
-          'translateY(' + (-radius * (0.96 + Math.random() * 0.08)).toFixed(1) + 'px) ' +
-          'rotate(' + (-angle).toFixed(2) + 'deg)';
-
-        var cent = document.createElement('div');
-        cent.className = 'name-rain__center';
-
-        var el = document.createElement('span');
-        el.className = 'name-rain__item';
-
-        var name = document.createElement('b');
-        var game = document.createElement('i');
-        game.textContent = entry[1];
-
-        el.appendChild(name);
-        el.appendChild(game);
-
-        /* 黄金角散布色相，一圈下来正好铺满彩虹，再加一点抖动避免太整齐 */
-        var hue = (gi * 137.508 + Math.random() * 26) % 360;
-        el.style.setProperty('--rain-hue', hue.toFixed(1));
-        el.style.setProperty('--rain-hue-2', ((hue + 34 + Math.random() * 20) % 360).toFixed(1));
-
-        el.style.fontSize = (small ? 9 + Math.random() * 2.5 : 11 + Math.random() * 3).toFixed(1) + 'px';
-        el.style.opacity = (small ? 0.62 + Math.random() * 0.24 : 0.64 + Math.random() * 0.26).toFixed(2);
-
-        /* 反向自转抵消整圈的旋转，名字始终是正的 */
-        el.style.animationDuration = durs[k] + 's';
-        el.style.animationDirection = (k % 2) ? 'normal' : 'reverse';
-
-        cent.appendChild(el);
-        arm.appendChild(cent);
-        ring.appendChild(arm);
-
-        items.push({ entry: entry, name: name });
-      }
-
-      layer.appendChild(ring);
-    });
-
-    render(lang);
-  }
-
-  build();
-
+  render(currentLang());
   document.addEventListener('languagechange', function (e) {
-    lang = (e.detail && e.detail.lang) || currentLang();
-    render(lang);
-  });
-
-  var resizeTimer = 0;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(build, 220);
+    render((e.detail && e.detail.lang) || currentLang());
   });
 })();
