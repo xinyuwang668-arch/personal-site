@@ -2047,12 +2047,19 @@ main{position:relative;z-index:1}
   position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
   contain:strict;
 }
+.name-rain__ring{
+  position:absolute;width:0;height:0;
+  animation-name:rainRing;animation-timing-function:linear;animation-iteration-count:infinite;
+  will-change:transform;
+}
+.name-rain__arm{position:absolute;left:0;top:0;transform-origin:0 0}
+.name-rain__center{position:absolute;left:0;top:0;transform:translate(-50%,-50%)}
 .name-rain__item{
   position:absolute;left:0;top:0;display:inline-flex;align-items:baseline;gap:.55em;
   white-space:nowrap;font-family:var(--font-serif);letter-spacing:.06em;
   color:rgba(52,86,140,.5);
   color:hsl(var(--rain-hue, 205) 78% 40%);
-  animation-name:nameDrift;animation-timing-function:linear;animation-iteration-count:infinite;
+  animation-name:rainSpin;animation-timing-function:linear;animation-iteration-count:infinite;
   will-change:transform;
 }
 .name-rain__item b{
@@ -2076,9 +2083,13 @@ main{position:relative;z-index:1}
     text-shadow:none;
   }
 }
-@keyframes nameDrift{
-  from{transform:translate3d(-38vw,0,0)}
-  to{transform:translate3d(118vw,0,0)}
+@keyframes rainRing{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+@keyframes rainSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(-360deg)}
 }
 @media (prefers-reduced-motion:reduce){.name-rain{display:none}}
 @media print{.name-rain{display:none}}
