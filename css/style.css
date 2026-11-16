@@ -509,6 +509,11 @@ body.nav-open .header.is-scrolled::before { opacity: 0; }
 .emblem__ring--150 { animation: spin 110s linear infinite; }
 .emblem__ring--118 { animation: spin 45s linear infinite reverse; }
 
+/* 指针：长针一分钟一圈，短针一小时一圈，四星与圆心不动 */
+.emblem__hand { transform-box: view-box; transform-origin: 220px 220px; will-change: transform; }
+.emblem__hand--min { animation: spin 60s linear infinite; }
+.emblem__hand--hour { animation: spin 3600s linear infinite; animation-delay: -3000s; }
+
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .emblem__ringtext {

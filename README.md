@@ -109,6 +109,9 @@ personal-site/
 用 CSS `spin` 动画绕 220,220 旋转，相邻环反向、周期 45–110 秒；实线环靠环上的小圆点标记看出转向。
 改转速或方向就改 `css/style.css` 里那五行 `animation`，`prefers-reduced-motion` 下会自动停。
 
+圆心的一组指针是 `.emblem__hand--min`（长针，60 秒一圈）与 `.emblem__hand--hour`（短针，3600 秒一圈），
+短针用 `animation-delay: -3000s` 偏到十点方向，避免和长针叠在一起；四角星、刻度和中心红点都不动。
+
 ### 3. 达达插页（#dada）
 
 夹在跑马灯和「关于」之间的一段无页码插页。故意不写「DADA」这个词：
