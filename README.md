@@ -208,10 +208,14 @@ personal-site/
 
 ### 11. 背后飘过的名字（name-rain）
 
-- 名单在 `js/name-rain.js` 顶部的 `GAMES` 数组里，格式是 `['主角名', '游戏简称']`；
+- 名单在 `js/name-rain.js` 顶部的 `GAMES` 数组里，每行是
+  `['中文主角名', '游戏简称', '英文名', '日文名', '韩文名']`；某语言留空就回落到中文名。
   想加就加一行，想删就删一行。
 - 脚本会随机打乱、随机高度、随机速度与方向，生成在 `.name-rain` 图层里；
-  桌面 36 条、窄屏 16 条，颜色与字号自动变淡变小。
+  桌面 36 条、窄屏 16 条，字号与透明度自动变小变淡。
+- 每条名字按黄金角散开色相，呈彩虹色；色相值写在内联的 `--rain-hue` / `--rain-hue-2` 上，
+  `css/style.css` 的 `.name-rain__item` 负责上色（不支持 `background-clip:text` 时退回单色）。
+- 切换语言时监听 `languagechange`，把每条名字换成当前语言的写法；`js/i18n.js` 的文本翻译会跳过 `.name-rain` 图层。
 - 图层 `z-index: 0`，首页与所有详情页的正文在它上面；`pointer-events: none`，不会挡住点击。
 - `prefers-reduced-motion: reduce` 时整层不生成，打印时也会隐藏。
 

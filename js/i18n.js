@@ -620,7 +620,7 @@
       const node = walker.currentNode;
       const parent = node.parentElement;
       if (!parent) continue;
-      if (parent.closest('.brand__cn, .hero__name, .lang, script, style')) continue;
+      if (parent.closest('.brand__cn, .hero__name, .lang, .name-rain, script, style')) continue;
       if (!/[\u4e00-\u9fff]/.test(node.nodeValue) && !textCache.has(node)) continue;
 
       let zh = textCache.get(node);
