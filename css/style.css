@@ -502,7 +502,12 @@ body.nav-open .header.is-scrolled::before { opacity: 0; }
   50%      { transform: translateY(-12px); }
 }
 
-.emblem__spin { transform-origin: 220px 220px; animation: spin 90s linear infinite; }
+.emblem__ring { transform-box: view-box; transform-origin: 220px 220px; will-change: transform; }
+.emblem__ring--204 { animation: spin 70s linear infinite reverse; }
+.emblem__ring--196 { animation: spin 55s linear infinite; }
+.emblem__ring--166 { animation: spin 85s linear infinite reverse; }
+.emblem__ring--150 { animation: spin 110s linear infinite; }
+.emblem__ring--118 { animation: spin 45s linear infinite reverse; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 

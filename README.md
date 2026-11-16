@@ -105,6 +105,10 @@ personal-site/
 > 首屏徽章外圈的 `ALPADER · PERSONAL ARCHIVE · EST. 2026 · CHINA`
 > 在 `#ringPath` 后的 `<textPath>` 里，改文案时注意路径长度，太长会被裁掉。
 
+徽章里的五道印刷圆环（r=204 / 196 / 166 / 150 / 118）各自是一组 `.emblem__ring--*`，
+用 CSS `spin` 动画绕 220,220 旋转，相邻环反向、周期 45–110 秒；实线环靠环上的小圆点标记看出转向。
+改转速或方向就改 `css/style.css` 里那五行 `animation`，`prefers-reduced-motion` 下会自动停。
+
 ### 3. 达达插页（#dada）
 
 夹在跑马灯和「关于」之间的一段无页码插页。故意不写「DADA」这个词：
