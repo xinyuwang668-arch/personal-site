@@ -76,8 +76,8 @@
     el.style.top = (2 + Math.random() * 93).toFixed(2) + '%';
     el.style.animationDuration = dur.toFixed(1) + 's';
     el.style.animationDelay = (-Math.random() * dur).toFixed(1) + 's';
-    el.style.fontSize = (small ? 9 + Math.random() * 4 : 12.5 + Math.random() * 6.5).toFixed(1) + 'px';
-    el.style.opacity = (small ? 0.50 + Math.random() * 0.34 : 0.60 + Math.random() * 0.34).toFixed(2);
+    el.style.fontSize = (small ? 10 + Math.random() * 3.5 : 13.5 + Math.random() * 6).toFixed(1) + 'px';
+    el.style.opacity = (small ? 0.78 + Math.random() * 0.20 : 0.86 + Math.random() * 0.14).toFixed(2);
     if (Math.random() < 0.45) el.style.animationDirection = 'reverse';
 
     layer.appendChild(el);
