@@ -110,10 +110,10 @@ personal-site/
 用 CSS `spin` 动画绕 220,220 旋转，相邻环反向、周期 45–110 秒；实线环靠环上的小圆点标记看出转向。
 改转速或方向就改 `css/style.css` 里那五行 `animation`，`prefers-reduced-motion` 下会自动停。
 
-圆心的一组指针是 `.emblem__hand--min`（长针）与 `.emblem__hand--hour`（短针），角度由 `js/clock.js`
-按现实时间写入：长针跟分秒走、短针跟时分走，每秒刷新一次。时区跟着界面语言切换——
-中 `Asia/Shanghai`、英 `UTC`、日 `Asia/Tokyo`、韩 `Asia/Seoul`，对应表在 `TZ` 里改。
-指针不再用 CSS 动画，所以切语言时时区立即生效；四角星、刻度和中心红点都不动。
+圆心的一组指针是 `.emblem__hand--hour`（短粗针）、`.emblem__hand--min`（长红针）与 `.emblem__hand--sec`
+（最长的金针），角度由 `js/clock.js` 按现实时间写入：秒针跟秒、分针跟分秒、时针跟时分，每 100 毫秒刷新一次。
+时区跟着界面语言切换——中 `Asia/Shanghai`、英 `UTC`、日 `Asia/Tokyo`、韩 `Asia/Seoul`，对应表在 `TZ` 里改。
+指针不用 CSS 动画，所以切语言时时区立即生效；四角星、刻度和中心红点都不动。
 
 ### 3. 达达插页（#dada）
 

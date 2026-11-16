@@ -8,7 +8,8 @@
 
   var minHand = document.querySelector('.emblem__hand--min');
   var hourHand = document.querySelector('.emblem__hand--hour');
-  if (!minHand || !hourHand || typeof Intl === 'undefined') return;
+  var secHand = document.querySelector('.emblem__hand--sec');
+  if (!minHand || !hourHand) return;
 
   var fmt = null;
   var fmtZone = '';
@@ -47,13 +48,16 @@
 
   function tick() {
     var t = parts(currentZone());
-    var minDeg = (t.m + t.s / 60) * 6;
+    var ms = new Date().getMilliseconds();
+    var minDeg = (t.m + (t.s + ms / 1000) / 60) * 6;
     var hourDeg = ((t.h % 12) + t.m / 60 + t.s / 3600) * 30;
+    var secDeg = (t.s + ms / 1000) * 6;
     minHand.style.transform = 'rotate(' + minDeg.toFixed(2) + 'deg)';
     hourHand.style.transform = 'rotate(' + hourDeg.toFixed(2) + 'deg)';
+    if (secHand) secHand.style.transform = 'rotate(' + secDeg.toFixed(2) + 'deg)';
   }
 
   tick();
-  setInterval(tick, 1000);
+  setInterval(tick, 100);
   document.addEventListener('languagechange', tick);
 })();
