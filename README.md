@@ -52,6 +52,7 @@ personal-site/
 ├── js/i18n.js          # 中 / 英 / 日 / 韩 词典与切换逻辑
 ├── js/doc-i18n.js      # 详情页（项目页 + 手记）的英 / 日 / 韩补充词条
 ├── js/name-rain.js     # 背后飘过的游戏主角名（名字与游戏简称都在文件顶部）
+├── js/clock.js         # 徽章指针：现实时间 + 按语言切时区
 ├── js/main.js          # 滚动进度、导航高亮、移动菜单、进场动画、掷骰子与拖拽、彩蛋
 ├── tools/set-site-url.py  # 一键把 og / RSS / sitemap 指到正式地址
 ├── .site-url           # 上一步记住的地址（脚本自己生成）
@@ -109,8 +110,10 @@ personal-site/
 用 CSS `spin` 动画绕 220,220 旋转，相邻环反向、周期 45–110 秒；实线环靠环上的小圆点标记看出转向。
 改转速或方向就改 `css/style.css` 里那五行 `animation`，`prefers-reduced-motion` 下会自动停。
 
-圆心的一组指针是 `.emblem__hand--min`（长针，60 秒一圈）与 `.emblem__hand--hour`（短针，3600 秒一圈），
-短针用 `animation-delay: -3000s` 偏到十点方向，避免和长针叠在一起；四角星、刻度和中心红点都不动。
+圆心的一组指针是 `.emblem__hand--min`（长针）与 `.emblem__hand--hour`（短针），角度由 `js/clock.js`
+按现实时间写入：长针跟分秒走、短针跟时分走，每秒刷新一次。时区跟着界面语言切换——
+中 `Asia/Shanghai`、英 `UTC`、日 `Asia/Tokyo`、韩 `Asia/Seoul`，对应表在 `TZ` 里改。
+指针不再用 CSS 动画，所以切语言时时区立即生效；四角星、刻度和中心红点都不动。
 
 ### 3. 达达插页（#dada）
 
