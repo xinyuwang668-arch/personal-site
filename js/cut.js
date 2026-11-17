@@ -206,15 +206,24 @@
     return node;
   }
 
-  function hourTsk() {
+  /* 文案走 i18n：中文原文当 key，切语言时自己重写一遍 */
+  function t(zh) {
+    return window.WXI18N && window.WXI18N.t ? window.WXI18N.t(zh) : zh;
+  }
+
+  function hourTpl() {
     var h = new Date().getHours();
-    if (h < 5) return '凌晨 ' + h + ' 点，剪它做什么！';
+    if (h < 5) return '凌晨 {h} 点，剪它做什么！';
     if (h < 9) return '天刚亮，纸先没了。';
     if (h < 12) return '上午的课剪掉了，下午的呢？';
     if (h < 14) return '午饭时间也不放过一张纸。';
-    if (h < 18) return '下午 ' + h + ' 点，一事无成，只剪了张纸。';
+    if (h < 18) return '下午 {h} 点，一事无成，只剪了张纸。';
     if (h < 23) return '晚自习该写的东西，被你剪成了球。';
-    return h + ' 点了，剪了做什么！';
+    return '{h} 点了，剪了做什么！';
+  }
+
+  function hourLine() {
+    return t(hourTpl()).replace('{h}', String(new Date().getHours()));
   }
 
   var JOKES = [
@@ -224,8 +233,12 @@
     '我问纸疼不疼，它说不疼，反正也没什么内容。'
   ];
 
-  function tskLines() {
-    return [hourTsk(), '：（', JOKES[Math.floor(Math.random() * JOKES.length)]];
+  function fillEcho(echo) {
+    while (echo.firstChild) echo.removeChild(echo.firstChild);
+    echo.appendChild(el('p', 'cut-echo__line', hourLine()));
+    echo.appendChild(el('p', 'cut-echo__line cut-echo__line--face', '：（'));
+    echo.appendChild(el('p', 'cut-echo__line', t(state.joke || JOKES[0])));
+    echo.appendChild(el('p', 'cut-echo__hint', t('刷新一下，纸还能长回来。')));
   }
 
   function makeBin() {
@@ -288,11 +301,9 @@
 
     /* 空出来的地方：垃圾桶 + 吐槽 */
     var bin = makeBin();
+    state.joke = JOKES[Math.floor(Math.random() * JOKES.length)];
     var echo = el('div', 'cut-echo');
-    tskLines().forEach(function (text, i) {
-      echo.appendChild(el('p', 'cut-echo__line' + (i === 1 ? ' cut-echo__line--face' : ''), text));
-    });
-    echo.appendChild(el('p', 'cut-echo__hint', '刷新一下，纸还能长回来。'));
+    fillEcho(echo);
     inner.appendChild(bin);
     inner.appendChild(echo);
 
@@ -345,5 +356,121 @@
     }, 520);
   }
 
-  cutBtn.addEventListener('click', cutNow);
+  /* ---------- 6. 沿着虚线拖剪刀 ---------- */
+
+  var runner = cutLine.querySelector('.cut-runner');
+  var fill = cutLine.querySelector('.cut-fill');
+  var icon = cutBtn.querySelector('.cut-btn__icon');
+  var cutting = null;
+
+  function fleck(x) {
+    if (!cutLine || calm) return;
+    var bit = el('span', 'cut-fleck');
+    bit.style.left = Math.round(x) + 'px';
+    bit.style.top = '0';
+    bit.style.setProperty('--fx', (Math.random() * 16 - 8).toFixed(1) + 'px');
+    bit.style.setProperty('--fr', (Math.random() * 120 - 60).toFixed(0) + 'deg');
+    cutLine.appendChild(bit);
+    setTimeout(function () {
+      if (bit.parentNode) bit.parentNode.removeChild(bit);
+    }, 760);
+  }
+
+  function setProgress(p) {
+    if (!cutting) return;
+    cutting.p = p;
+    fill.style.width = Math.round(p * cutting.w) + 'px';
+    runner.style.transform = 'translateX(' + (p * cutting.travel).toFixed(1) + 'px)';
+  }
+
+  function beginCut(e) {
+    if (state.cut || cutting) return;
+    var box = cutLine.getBoundingClientRect();
+    var ir = icon.getBoundingClientRect();
+    var left = ir.left - box.left;
+
+    if (!runner.firstChild && icon) runner.appendChild(icon.cloneNode(true));
+    runner.style.left = left + 'px';
+    runner.style.top = (ir.top - box.top) + 'px';
+    runner.classList.add('is-on');
+    cutBtn.classList.add('is-cutting');
+    cutLine.classList.add('is-cutting');
+
+    cutting = {
+      w: box.width,
+      x0: box.left,
+      travel: Math.max(0, box.width - left - ir.width),
+      p: 0,
+      fleckAt: -1
+    };
+    if (cutBtn.setPointerCapture) {
+      try { cutBtn.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    e.preventDefault();
+    moveCut(e);
+  }
+
+  function moveCut(e) {
+    if (!cutting) return;
+    var box = cutLine.getBoundingClientRect();   /* 每帧重新量，改窗口大小也不会错位 */
+    if (box.width) { cutting.w = box.width; cutting.x0 = box.left; }
+    var p = (e.clientX - cutting.x0) / cutting.w;
+    p = p < 0 ? 0 : (p > 1 ? 1 : p);
+    setProgress(p);
+    if (p - cutting.fleckAt > 0.045) {
+      cutting.fleckAt = p;
+      fleck(p * cutting.w + 6);
+    }
+  }
+
+  function endCut(e) {
+    if (!cutting) return;
+    if (cutBtn.releasePointerCapture && e && e.pointerId !== undefined) {
+      try { cutBtn.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
+    var p = cutting.p;
+    cutLine.classList.remove('is-cutting');
+
+    if (p >= 0.94) {
+      setProgress(1);
+      cutting = null;
+      cutNow();
+      return;
+    }
+
+    /* 没剪到头：纸又合上了 */
+    cutLine.classList.add('is-retracting');
+    setProgress(0);
+    setTimeout(function () {
+      cutLine.classList.remove('is-retracting');
+      runner.classList.remove('is-on');
+      cutBtn.classList.remove('is-cutting');
+      fill.style.width = '0px';
+      cutting = null;
+    }, 500);
+  }
+
+  if (window.PointerEvent) {
+    cutLine.addEventListener('pointerdown', function (e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      if (e.target === bubble) return;
+      beginCut(e);
+    });
+    doc.addEventListener('pointermove', moveCut, { passive: true });
+    doc.addEventListener('pointerup', endCut);
+    doc.addEventListener('pointercancel', endCut);
+
+    /* 键盘（回车/空格）产生的 click 没有坐标，直接剪开 */
+    cutBtn.addEventListener('click', function (e) {
+      if (e.detail === 0) cutNow();
+    });
+  } else {
+    cutBtn.addEventListener('click', cutNow);
+  }
+
+  /* 换语言时，把已经浮现的吐槽重新写一遍 */
+  doc.addEventListener('languagechange', function () {
+    var echo = inner && inner.querySelector('.cut-echo');
+    if (echo) fillEcho(echo);
+  });
 })();

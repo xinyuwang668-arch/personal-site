@@ -2129,6 +2129,44 @@ main{position:relative;z-index:1}
 }
 .cut-bubble.is-on{opacity:1;transform:translateY(0) rotate(-1.4deg)}
 
+/* --- drag the scissors along the line --- */
+.dada__cut{touch-action:pan-y}
+.dada__cut .cut-btn{touch-action:none}
+.cut-fill{
+  position:absolute;left:0;top:calc(50% - 1px);width:0;height:1.5px;z-index:2;
+  background:rgba(33,36,31,.82);border-radius:2px;
+  box-shadow:0 1px 0 rgba(237,228,208,.85);
+  pointer-events:none;
+}
+.cut-runner{
+  position:absolute;left:0;top:0;width:36px;height:23px;z-index:4;
+  color:#8d6a2c;font-size:0;pointer-events:none;
+  opacity:0;transform:translateX(0);
+  transition:opacity .18s ease;
+}
+.cut-runner.is-on{opacity:1}
+.cut-runner svg{display:block;width:100%;height:100%;overflow:visible}
+.cut-runner path{fill:currentColor}
+.cut-runner .snip__stem{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round}
+.cut-runner circle{fill:none;stroke:currentColor;stroke-width:1.9}
+.cut-runner .snip__pin{fill:currentColor;stroke:none}
+.cut-runner .snip__a{animation-duration:.7s}
+.cut-runner .snip__b{animation-duration:.7s}
+.dada__cut.is-cutting .cut-btn{color:var(--ink-faint)}
+.dada__cut .cut-btn.is-cutting .cut-btn__icon{opacity:0}
+.dada__cut .cut-btn__icon{transition:opacity .18s ease}
+.dada__cut.is-retracting .cut-fill{transition:width .46s cubic-bezier(.4,0,.2,1)}
+.dada__cut.is-retracting .cut-runner{transition:transform .46s cubic-bezier(.4,0,.2,1),opacity .3s ease .16s}
+.cut-fleck{
+  position:absolute;z-index:5;width:5px;height:2px;border-radius:1px;
+  background:rgba(33,36,31,.5);pointer-events:none;
+  animation:fleckDrop .72s cubic-bezier(.3,.1,.7,1) forwards;
+}
+@keyframes fleckDrop{
+  0%{opacity:.9;transform:translate(0,0) rotate(0deg)}
+  100%{opacity:0;transform:translate(var(--fx,6px),26px) rotate(var(--fr,40deg))}
+}
+
 /* loose cut-up words */
 .cut-layer{position:absolute;left:0;top:0;width:100%;height:0;z-index:60;pointer-events:none}
 .cut-layer .hat__word{
