@@ -2180,10 +2180,32 @@ main{position:relative;z-index:1}
 .crumple{
   position:absolute;left:0;width:100%;z-index:80;pointer-events:none;
   transform-origin:50% 0;will-change:transform,opacity;
-  transition:transform .52s cubic-bezier(.4,.05,.55,1),filter .52s ease,opacity .42s ease;
+  transition:transform .42s cubic-bezier(.4,.05,.55,1),filter .42s ease,opacity .34s ease,clip-path .42s cubic-bezier(.4,.05,.55,1);
 }
-.crumple.is-squeezing{transform:scale(.945,.87) rotate(.45deg);filter:blur(.9px) contrast(1.04)}
-.crumple.is-gone{transform:scale(.2,.13) rotate(-3.2deg);opacity:0;filter:blur(3px);transition:transform .42s cubic-bezier(.55,0,.8,.4),opacity .42s ease,filter .42s ease}
+.crumple.is-gather{
+  transform:scale(.988,.955);filter:blur(.4px) contrast(1.02);
+  clip-path:inset(0 0 0 0 round 3px);
+}
+.crumple.is-crush{
+  transform:scale(.87,.6) rotate(.5deg);
+  filter:blur(1.5px) contrast(1.07) brightness(.985);
+  clip-path:inset(9% 7% 13% 8% round 22px);
+}
+.crumple.is-wrinkle::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:multiply;opacity:.3;
+  background:
+    repeating-linear-gradient(64deg, rgba(33,36,31,.10) 0 1px, transparent 1px 31px),
+    repeating-linear-gradient(-73deg, rgba(33,36,31,.07) 0 1px, transparent 1px 47px),
+    repeating-linear-gradient(12deg, rgba(255,252,244,.5) 0 2px, transparent 2px 53px);
+  -webkit-mask-image:radial-gradient(115% 105% at 50% 46%, #000 32%, rgba(0,0,0,.25) 100%);
+  mask-image:radial-gradient(115% 105% at 50% 46%, #000 32%, rgba(0,0,0,.25) 100%);
+}
+.crumple.is-ball{
+  transform:scale(.3,.22) rotate(-3.4deg);opacity:0;
+  filter:blur(2.6px) contrast(1.05);
+  clip-path:inset(40% 42% 42% 40% round 50%);
+  transition:transform .46s cubic-bezier(.55,0,.8,.4),opacity .46s ease .06s,filter .46s ease,clip-path .46s cubic-bezier(.55,0,.8,.4);
+}
 
 .cut-wad{
   position:absolute;width:92px;height:84px;margin:-42px 0 0 -46px;z-index:92;
@@ -2197,10 +2219,41 @@ main{position:relative;z-index:1}
     radial-gradient(72% 64% at 30% 22%, #f8efdd 0%, #e6d8bb 54%, #c6b291 100%);
   background-size:100% 100%, 128% 100%, 100% 118%, 86% 100%, 112% 100%, 100% 100%;
   background-position:0 0, -16% 0, 0 -10%, 7% 0, -9% 0, 0 0;
-  filter:drop-shadow(0 10px 14px rgba(15,39,33,.24));
+  filter:drop-shadow(0 14px 18px rgba(15,39,33,.3));
   opacity:0;pointer-events:none;
   transition:transform .66s cubic-bezier(.3,.1,.7,1),opacity .24s ease;
 }
+
+/* throwing game */
+.cut-throw{
+  position:absolute;left:50%;top:calc(42% + 74px);z-index:96;
+  transform:translateX(-50%);text-align:center;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.cut-throw.is-on{opacity:1;pointer-events:auto}
+.cut-throw__btn{
+  display:inline-flex;align-items:center;gap:8px;
+  margin:0;padding:9px 18px 10px;
+  border:1px solid rgba(33,36,31,.34);background:var(--paper);color:var(--ink);
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;
+  cursor:pointer;transition:background .2s ease,transform .2s ease,opacity .2s ease;
+}
+.cut-throw__btn:hover{background:var(--paper-warm)}
+.cut-throw__btn:focus-visible{outline:1px dashed var(--brass);outline-offset:4px}
+.cut-throw.is-charging .cut-throw__btn{background:var(--green);color:var(--paper);transform:translateY(1px)}
+.cut-throw__bar{
+  display:block;width:clamp(150px,18vw,210px);height:5px;margin:10px auto 0;
+  background:rgba(33,36,31,.13);position:relative;overflow:hidden;
+}
+.cut-throw__bar::before{
+  content:"";position:absolute;top:0;bottom:0;left:55%;width:30%;z-index:2;
+  background:rgba(176,132,66,.3);border-left:1px solid rgba(176,132,66,.65);border-right:1px solid rgba(176,132,66,.65);
+}
+.cut-throw__fill{position:absolute;top:0;bottom:0;left:0;width:0;z-index:1;background:var(--green)}
+.cut-throw.is-charging .cut-throw__fill{background:var(--green-deep)}
+.cut-throw__hint{display:block;margin-top:8px;font-family:var(--font-mono);font-size:9.5px;
+  letter-spacing:.14em;color:var(--ink-faint)}
+.cut-throw.is-thrown{opacity:0;pointer-events:none;transition:opacity .18s ease}
 
 /* the bin */
 .cut-bin{
@@ -2214,6 +2267,14 @@ main{position:relative;z-index:1}
   transition:transform .32s cubic-bezier(.2,.9,.3,1.3)}
 .cut-bin.is-fed .cut-bin__lid{transform:rotate(0deg)}
 .cut-bin.is-fed{animation:binShake .36s ease-in-out}
+.cut-bin.is-bumped{animation:binBump .42s ease-out}
+@keyframes binBump{
+  0%{transform:translate(0,0) rotate(0)}
+  22%{transform:translate(-4px,2px) rotate(-2.2deg)}
+  46%{transform:translate(3px,-1px) rotate(1.6deg)}
+  70%{transform:translate(-2px,1px) rotate(-.8deg)}
+  100%{transform:translate(0,0) rotate(0)}
+}
 @keyframes binShake{0%,100%{transform:translateX(0)}28%{transform:translateX(-3px)}62%{transform:translateX(2px)}}
 
 /* what is left to say */
