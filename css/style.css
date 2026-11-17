@@ -2264,8 +2264,8 @@ main{position:relative;z-index:1}
   background:rgba(33,36,31,.13);position:relative;overflow:hidden;
 }
 .cut-throw__bar::before{
-  content:"";position:absolute;top:0;bottom:0;left:55%;width:20%;z-index:2;
-  background:rgba(176,132,66,.34);border-left:1px solid rgba(176,132,66,.7);border-right:1px solid rgba(176,132,66,.7);
+  content:"";position:absolute;top:0;bottom:0;left:48%;width:28%;z-index:2;
+  background:rgba(214,179,106,.8);border-left:1px solid var(--brass);border-right:1px solid var(--brass);
 }
 .cut-throw__fill{position:absolute;top:0;bottom:0;left:0;width:0;z-index:1;background:var(--green)}
 .cut-throw.is-charging .cut-throw__fill{background:var(--green-deep)}

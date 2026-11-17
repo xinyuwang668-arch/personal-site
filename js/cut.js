@@ -590,8 +590,8 @@
     });
 
     function launch(p) {
-      var sweet = p >= 0.55 && p <= 0.75;
-      var hit = Math.random() < (sweet ? 0.2 : 0.01);
+      var sweet = p >= 0.48 && p <= 0.76;      /* 蓄力条上那段铜色 */
+      var hit = Math.random() < (sweet ? 0.35 : 0.05);
 
       var b = bin.getBoundingClientRect();
       var mouth = {
