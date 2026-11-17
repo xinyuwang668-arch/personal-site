@@ -2190,12 +2190,12 @@ main{position:relative;z-index:1}
 .cut-tiles{
   position:absolute;inset:0;z-index:3;pointer-events:none;
   perspective:1100px;transform-style:preserve-3d;transform-origin:50% 50%;
-  transition:transform .72s cubic-bezier(.5,.06,.6,1);
+  transition:transform .74s cubic-bezier(.5,0,.86,.56);
 }
 .cut-tile{
   position:absolute;overflow:hidden;transform-style:preserve-3d;
   transform:rotateY(calc(var(--ry,0) * 0deg)) rotateX(calc(var(--rx,0) * 0deg)) translate3d(0,0,0);
-  transition:transform .72s cubic-bezier(.5,.06,.6,1),opacity .22s ease .5s,filter .72s ease;
+  transition:transform .74s cubic-bezier(.5,0,.86,.56),opacity .24s ease .5s,filter .74s ease;
   will-change:transform,opacity;
 }
 .cut-tile__in{position:absolute;transform-origin:0 0}
@@ -2214,7 +2214,7 @@ main{position:relative;z-index:1}
   background:
     repeating-linear-gradient(64deg, rgba(33,36,31,.10) 0 1px, transparent 1px 31px),
     repeating-linear-gradient(-73deg, rgba(33,36,31,.07) 0 1px, transparent 1px 47px),
-    repeating-linear-gradient(12deg, rgba(255,252,244,.5) 0 2px, transparent 2px 53px);
+    repeating-linear-gradient(12deg, rgba(33,36,31,.05) 0 2px, transparent 2px 53px);
   -webkit-mask-image:radial-gradient(115% 105% at 50% 46%, #000 32%, rgba(0,0,0,.25) 100%);
   mask-image:radial-gradient(115% 105% at 50% 46%, #000 32%, rgba(0,0,0,.25) 100%);
 }

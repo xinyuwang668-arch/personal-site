@@ -461,17 +461,24 @@
       var tiles = buildTiles(wrap, 4, 3);      /* 切成纸片，各自朝中心折 */
       setTimeout(function () {
         tiles.classList.add('is-fold');
+
+        /* 纸片塌到一半，纸团就先长出来，交接不空场 */
         setTimeout(function () {
-          wrap.style.display = 'none';
           var wad = el('div', 'cut-wad');
           wad.style.left = cx + 'px';
           wad.style.top = cy + 'px';
           doc.body.appendChild(wad);
-          wad.getBoundingClientRect();        /* 先落一次布局，让 opacity 从 0 过渡上来 */
+          wad.getBoundingClientRect();      /* 先落一次布局，让 opacity 从 0 过渡上来 */
           wad.style.opacity = '1';
           doc.documentElement.dataset.cutStage = 'wad';
-          setTimeout(function () { showThrow(wad, bin, echo, cx, cy); }, 300);
-        }, 740);
+        }, 520);
+
+        setTimeout(function () { wrap.style.display = 'none'; }, 780);
+
+        setTimeout(function () {
+          var wad = doc.querySelector('.cut-wad');
+          if (wad) showThrow(wad, bin, echo, cx, cy);
+        }, 900);
       }, 70);
     }, 250);
   }
