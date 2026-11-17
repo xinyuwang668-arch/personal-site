@@ -441,9 +441,11 @@
       return;
     }
 
-    /* 把切线顶到视口上方一点，让“空”露出来 */
+    /* 把切线顶到视口上方一点，让“空”露出来。必须是瞬时滚动：
+       站点 CSS 是 scroll-behavior:smooth，平滑滚动还没走完时读 pageYOffset 会读到旧值，
+       纸团就会算错位置，飘到屏幕外面去 */
     var lineTop = cutLine.getBoundingClientRect().top + window.pageYOffset;
-    window.scrollTo(0, Math.max(0, lineTop - 78));
+    window.scrollTo({ top: Math.max(0, lineTop - 78), behavior: 'instant' });
 
     /* 揉：先收紧，再压扁起皱，最后缩成一颗球——球落在视线中心，纸团从那里接着来 */
     var cx = window.pageXOffset + window.innerWidth / 2;
@@ -477,7 +479,7 @@
 
         setTimeout(function () {
           var wad = doc.querySelector('.cut-wad');
-          if (wad) showThrow(wad, bin, echo, cx, cy);
+          if (wad) showThrow(wad, bin, echo);
         }, 900);
       }, 70);
     }, 250);
@@ -524,7 +526,7 @@
 
   /* ---------- 7. 投纸团：按住蓄力，松开投出 ---------- */
 
-  function showThrow(wad, bin, echo, cx, cy) {
+  function showThrow(wad, bin, echo) {
     doc.documentElement.dataset.cutStage = 'throw';
 
     var ui = el('div', 'cut-throw');
@@ -602,7 +604,11 @@
         x: b.left - 58 - Math.random() * 46 + window.pageXOffset,
         y: b.bottom + 4 + window.pageYOffset
       };
-      var from = { x: cx, y: cy };
+      var wb = wad.getBoundingClientRect();
+      var from = {
+        x: wb.left + wb.width / 2 + window.pageXOffset,
+        y: wb.top + wb.height / 2 + window.pageYOffset
+      };
 
       doc.documentElement.dataset.cutStage = 'fly';
 
