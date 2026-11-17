@@ -2184,7 +2184,26 @@ main{position:relative;z-index:1}
 }
 .crumple.is-gather{
   transform:scale(.988,.955);filter:blur(.4px) contrast(1.02);
-  clip-path:inset(0 0 0 0 round 3px);
+}
+
+/* 压碎：内容被切成 4×3 张纸片，各自朝中心折进去（PowerPoint 的 Crush 那一下） */
+.cut-tiles{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  perspective:1100px;transform-style:preserve-3d;transform-origin:50% 50%;
+  transition:transform .72s cubic-bezier(.5,.06,.6,1);
+}
+.cut-tile{
+  position:absolute;overflow:hidden;transform-style:preserve-3d;
+  transform:rotateY(calc(var(--ry,0) * 0deg)) rotateX(calc(var(--rx,0) * 0deg)) translate3d(0,0,0);
+  transition:transform .72s cubic-bezier(.5,.06,.6,1),opacity .22s ease .5s,filter .72s ease;
+  will-change:transform,opacity;
+}
+.cut-tile__in{position:absolute;transform-origin:0 0}
+.cut-tiles.is-fold{transform:scale(.44)}
+.cut-tiles.is-fold .cut-tile{
+  transform:rotateY(calc(var(--ry,0) * 46deg)) rotateX(calc(var(--rx,0) * 28deg))
+            translate3d(calc(var(--ry,0) * 7%), calc(var(--rx,0) * 9%), -26px);
+  opacity:0;filter:brightness(.9) blur(.5px);
 }
 .crumple.is-crush{
   transform:scale(.88,.63) rotate(.5deg);
@@ -2245,8 +2264,8 @@ main{position:relative;z-index:1}
   background:rgba(33,36,31,.13);position:relative;overflow:hidden;
 }
 .cut-throw__bar::before{
-  content:"";position:absolute;top:0;bottom:0;left:55%;width:30%;z-index:2;
-  background:rgba(176,132,66,.3);border-left:1px solid rgba(176,132,66,.65);border-right:1px solid rgba(176,132,66,.65);
+  content:"";position:absolute;top:0;bottom:0;left:55%;width:20%;z-index:2;
+  background:rgba(176,132,66,.34);border-left:1px solid rgba(176,132,66,.7);border-right:1px solid rgba(176,132,66,.7);
 }
 .cut-throw__fill{position:absolute;top:0;bottom:0;left:0;width:0;z-index:1;background:var(--green)}
 .cut-throw.is-charging .cut-throw__fill{background:var(--green-deep)}
@@ -2296,6 +2315,7 @@ main{position:relative;z-index:1}
   margin:clamp(20px,3.4vw,34px) 0 0;font-family:var(--font-mono);font-size:10.5px;
   letter-spacing:.14em;color:var(--ink-soft);opacity:0;
 }
+.dada.is-cut #cutLine{opacity:0;transition:opacity .42s ease .12s}
 .dada.is-cut .cut-btn{opacity:0;transition:opacity .45s ease .15s}
 .dada.is-done .cut-echo__line,.dada.is-done .cut-echo__hint{
   animation:echoIn .72s cubic-bezier(.2,.8,.3,1) forwards;

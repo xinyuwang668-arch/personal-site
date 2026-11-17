@@ -457,23 +457,62 @@
     wrap.classList.add('is-gather');
 
     setTimeout(function () {
-      wrap.classList.add('is-wrinkle', 'is-crush');
+      wrap.classList.add('is-wrinkle');
+      var tiles = buildTiles(wrap, 4, 3);      /* 切成纸片，各自朝中心折 */
       setTimeout(function () {
-        wrap.classList.add('is-ball');
-        var wad = el('div', 'cut-wad');
-        wad.style.left = cx + 'px';
-        wad.style.top = cy + 'px';
-        doc.body.appendChild(wad);
-        wad.getBoundingClientRect();          /* 先落一次布局，让 opacity 从 0 过渡上来 */
-        wad.style.opacity = '1';
-        doc.documentElement.dataset.cutStage = 'wad';
-
+        tiles.classList.add('is-fold');
         setTimeout(function () {
           wrap.style.display = 'none';
-          showThrow(wad, bin, echo, cx, cy);
-        }, 400);
-      }, 470);
+          var wad = el('div', 'cut-wad');
+          wad.style.left = cx + 'px';
+          wad.style.top = cy + 'px';
+          doc.body.appendChild(wad);
+          wad.getBoundingClientRect();        /* 先落一次布局，让 opacity 从 0 过渡上来 */
+          wad.style.opacity = '1';
+          doc.documentElement.dataset.cutStage = 'wad';
+          setTimeout(function () { showThrow(wad, bin, echo, cx, cy); }, 300);
+        }, 740);
+      }, 70);
     }, 250);
+  }
+
+  /* 把这一整块内容复制到 cols×rows 张纸片里，折叠时每片绕内侧边翻进去 */
+  function buildTiles(wrap, cols, rows) {
+    var html = wrap.innerHTML.replace(/\sid="[^"]*"/g, '');
+    var layer = el('div', 'cut-tiles');
+    var c, r;
+
+    for (r = 0; r < rows; r++) {
+      for (c = 0; c < cols; c++) {
+        var t = el('div', 'cut-tile');
+        t.style.left = (c * 100 / cols) + '%';
+        t.style.top = (r * 100 / rows) + '%';
+        t.style.width = (100 / cols) + '%';
+        t.style.height = (100 / rows) + '%';
+        t.style.transformOrigin =
+          (c < cols / 2 ? '100% ' : '0% ') + (r < rows / 2 ? '100%' : '0%');
+        t.style.setProperty('--ry', c < cols / 2 ? 1 : -1);
+        t.style.setProperty('--rx', r < rows / 2 ? 1 : -1);
+        t.style.transitionDelay =
+          (Math.abs(c - (cols - 1) / 2) * 2 + Math.abs(r - (rows - 1) / 2) * 3) * 14 + 'ms';
+
+        var inner = el('div', 'cut-tile__in');
+        inner.style.width = (cols * 100) + '%';
+        inner.style.height = (rows * 100) + '%';
+        inner.style.left = (-c * 100) + '%';
+        inner.style.top = (-r * 100) + '%';
+        inner.innerHTML = html;
+
+        t.appendChild(inner);
+        layer.appendChild(t);
+      }
+    }
+
+    wrap.appendChild(layer);
+    Array.prototype.slice.call(wrap.children).forEach(function (kid) {
+      if (kid !== layer) kid.style.opacity = '0';   /* 原件藏起来，只留纸片 */
+    });
+    return layer;
   }
 
   /* ---------- 7. 投纸团：按住蓄力，松开投出 ---------- */
@@ -544,8 +583,8 @@
     });
 
     function launch(p) {
-      var sweet = p >= 0.55 && p <= 0.85;
-      var hit = Math.random() < (sweet ? 0.9 : 0.42);
+      var sweet = p >= 0.55 && p <= 0.75;
+      var hit = Math.random() < (sweet ? 0.2 : 0.01);
 
       var b = bin.getBoundingClientRect();
       var mouth = {
