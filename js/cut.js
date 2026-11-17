@@ -28,7 +28,7 @@
     '剪刀', '胶水', '车票', '偶然', '报纸', '图钉', '午夜', '打字机', '印章', '胶带', '邮票', '碎纸'
   ];
   var SHOWN = 8;
-  var state = { cut: false };
+  var state = { cut: false, snapshot: null, gone: [] };
 
   function shuffled(list) {
     var a = list.slice();
@@ -136,7 +136,9 @@
     drag = null;
   }
 
-  hat.addEventListener('pointerdown', onDown);
+  /* 帽子里的字可能整块被重置换掉，所以挂事件单独成函数 */
+  function bindDrag() { hat.addEventListener('pointerdown', onDown); }
+  bindDrag();
   layer.addEventListener('pointerdown', onDown);
   doc.addEventListener('pointermove', onMove, { passive: true });
   doc.addEventListener('pointerup', onUp);
@@ -159,7 +161,8 @@
     }
   }
 
-  if (dice) dice.addEventListener('click', roll);
+  function bindDice() { if (dice) dice.addEventListener('click', roll); }
+  bindDice();
   fillHat();
 
   /* ---------- 4. 剪刀与小纸条 ---------- */
@@ -168,13 +171,16 @@
   var bubbleHide = null;
   var seen = false;
 
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { seen = en.isIntersecting; });
-    }, { threshold: 0.28 }).observe(cutLine);
-  } else {
-    seen = true;
+  function watchLine() {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { seen = en.isIntersecting; });
+      }, { threshold: 0.28 }).observe(cutLine);
+    } else {
+      seen = true;
+    }
   }
+  watchLine();
 
   function hideBubble() {
     if (!bubble) return;
@@ -366,7 +372,11 @@
     echo.appendChild(el('p', 'cut-echo__line', hourLine()));
     echo.appendChild(el('p', 'cut-echo__line cut-echo__line--face', '：（'));
     if (state.line) echo.appendChild(el('p', 'cut-echo__line', t4(state.line)));
-    echo.appendChild(el('p', 'cut-echo__hint', t('刷新一下，纸还能长回来。')));
+
+    var again = el('button', 'cut-reset', t('再来一张'));
+    again.setAttribute('type', 'button');
+    again.addEventListener('click', reset);
+    echo.appendChild(again);
   }
 
   function makeBin() {
@@ -384,7 +394,19 @@
 
   function cutNow() {
     if (state.cut) return;
+    loosed().forEach(release);                 /* 飞出去的字先回帽子里，快照才完整 */
+
+    /* 拖动过程已经把虚线画成实线了，拍快照前先把它擦干净，恢复时才是没剪过的样子 */
+    var fillEl = cutLine.querySelector('.cut-fill');
+    var runnerEl = cutLine.querySelector('.cut-runner');
+    if (fillEl) fillEl.style.width = '0px';
+    if (runnerEl) runnerEl.classList.remove('is-on');
+    cutLine.classList.remove('is-cutting', 'is-retracting', 'is-snipping');
+    cutBtn.classList.remove('is-cutting');
+    state.snapshot = inner.innerHTML;
+
     state.cut = true;
+    state.line = null;
     clearTimeout(bubbleTimer);
     clearTimeout(bubbleHide);
     hideBubble();
@@ -398,7 +420,7 @@
 
     /* 先把要藏起来的版块记下来——必须赶在包裹挂到 body 之前，
        否则新挂上去的 .crumple 也会被当成“后面的版块”一起藏掉 */
-    var gone = [];
+    var gone = state.gone = [];
     var sib = section.nextElementSibling;
     while (sib) { gone.push(sib); sib = sib.nextElementSibling; }
     var mainEl = doc.getElementById('main');
@@ -770,23 +792,73 @@
     }, 500);
   }
 
-  if (window.PointerEvent) {
-    cutLine.addEventListener('pointerdown', function (e) {
-      if (e.button !== undefined && e.button !== 0) return;
-      if (e.target === bubble) return;
-      beginCut(e);
-    });
-    doc.addEventListener('pointermove', moveCut, { passive: true });
-    doc.addEventListener('pointerup', endCut);
-    doc.addEventListener('pointercancel', endCut);
+  /* ---------- 8. 再来一张：不刷新页面，把这一节恢复原样 ---------- */
 
-    /* 键盘（回车/空格）产生的 click 没有坐标，直接剪开 */
-    cutBtn.addEventListener('click', function (e) {
-      if (e.detail === 0) cutNow();
-    });
-  } else {
-    cutBtn.addEventListener('click', cutNow);
+  function reset() {
+    if (!state.cut || !inner || !state.snapshot) return;
+    state.cut = false;
+    state.line = null;
+    clearTimeout(bubbleTimer);
+    clearTimeout(bubbleHide);
+
+    /* 剪开之后才存在的东西全收掉 */
+    ['.crumple', '.cut-tiles', '.cut-wad', '.cut-throw', '.cut-bin', '.cut-echo']
+      .forEach(function (sel) {
+        Array.prototype.slice.call(doc.querySelectorAll(sel)).forEach(function (n) {
+          if (n.parentNode) n.parentNode.removeChild(n);
+        });
+      });
+
+    /* 拖出帽子的字清掉，被收走的版块放回来 */
+    if (layer) while (layer.firstChild) layer.removeChild(layer.firstChild);
+    state.gone.forEach(function (n) { n.style.display = ''; });
+    state.gone = [];
+
+    /* 内容整块放回去 */
+    inner.innerHTML = state.snapshot;
+    if (section) section.classList.remove('is-cut', 'is-done');
+    doc.documentElement.removeAttribute('data-cut-stage');
+    doc.documentElement.removeAttribute('data-cut-hit');
+
+    /* 节点都是新的了，重新取一遍再挂事件 */
+    hat = doc.getElementById('hatWords');
+    cutLine = doc.getElementById('cutLine');
+    cutBtn = doc.getElementById('cutBtn');
+    bubble = doc.getElementById('cutBubble');
+    dice = doc.getElementById('rollDice');
+    bindDrag();
+    bindDice();
+    bindCut();
+    watchLine();
+
+    /* 回到切线那一行，别让人对着空白 */
+    var top = section.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: Math.max(0, top - 76), behavior: 'instant' });
+
+    planBubble();
   }
+
+  function bindCut() {
+    if (window.PointerEvent) {
+      cutLine.addEventListener('pointerdown', function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        if (e.target === bubble) return;
+        beginCut(e);
+      });
+
+      /* 键盘（回车/空格）产生的 click 没有坐标，直接剪开 */
+      cutBtn.addEventListener('click', function (e) {
+        if (e.detail === 0) cutNow();
+      });
+    } else {
+      cutBtn.addEventListener('click', cutNow);
+    }
+  }
+
+  bindCut();
+  doc.addEventListener('pointermove', moveCut, { passive: true });
+  doc.addEventListener('pointerup', endCut);
+  doc.addEventListener('pointercancel', endCut);
 
   /* 换语言时，把已经浮现的吐槽重新写一遍 */
   doc.addEventListener('languagechange', function () {
