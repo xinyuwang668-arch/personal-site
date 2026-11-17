@@ -2187,9 +2187,8 @@ main{position:relative;z-index:1}
   clip-path:inset(0 0 0 0 round 3px);
 }
 .crumple.is-crush{
-  transform:scale(.87,.6) rotate(.5deg);
-  filter:blur(1.5px) contrast(1.07) brightness(.985);
-  clip-path:inset(9% 7% 13% 8% round 22px);
+  transform:scale(.88,.63) rotate(.5deg);
+  filter:blur(1.4px) contrast(1.07) brightness(.985);
 }
 .crumple.is-wrinkle::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:multiply;opacity:.3;
