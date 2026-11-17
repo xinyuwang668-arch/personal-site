@@ -203,7 +203,28 @@
   <!-- ============ DADA INTERLUDE ============ -->
   <section class="dada" id="dada" aria-labelledby="dadaTitle">
     <div class="container dada__inner">
-      <p class="dada__cut" aria-hidden="true"><span>✂</span><b>CUT HERE</b><i></i></p>
+      <p class="dada__cut" id="cutLine">
+        <button class="cut-btn" id="cutBtn" type="button" aria-label="沿着虚线剪开这张纸">
+          <span class="cut-btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 34 22">
+              <g class="snip__a">
+                <path d="M17.2 10.2 33 5.4 33.6 7.3Z"/>
+                <path class="snip__stem" d="M17.4 10.4 10.2 6.6"/>
+                <circle cx="6.6" cy="5.4" r="3.5"/>
+              </g>
+              <g class="snip__b">
+                <path d="M17.2 11.8 33 16.6 33.6 14.7Z"/>
+                <path class="snip__stem" d="M17.4 11.6 10.2 15.4"/>
+                <circle cx="6.6" cy="16.6" r="3.5"/>
+              </g>
+              <circle class="snip__pin" cx="17.3" cy="11" r="1.6"/>
+            </svg>
+          </span>
+          <b>CUT HERE</b>
+        </button>
+        <i aria-hidden="true"></i>
+        <span class="cut-bubble" id="cutBubble" role="status">剪开看看吧。</span>
+      </p>
 
       <div class="dada__grid">
         <div class="dada__text">
@@ -599,6 +620,7 @@
 
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
+<script src="js/cut.js"></script>
 <script src="js/name-rain.js"></script>
 <script src="js/clock.js?v=20261116c"></script>
 </body>
