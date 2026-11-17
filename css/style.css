@@ -2233,9 +2233,10 @@ main{position:relative;z-index:1}
 .cut-echo__line:nth-child(3){--tilt:-.4deg}
 .cut-echo__line--face{font-size:clamp(26px,3.6vw,40px);letter-spacing:-.14em;color:var(--brass)}
 .cut-echo__hint{
-  margin:clamp(20px,3.4vw,34px) 0 0;font-family:var(--font-mono);font-size:10px;
-  letter-spacing:.16em;color:var(--ink-faint);opacity:0;
+  margin:clamp(20px,3.4vw,34px) 0 0;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.14em;color:var(--ink-soft);opacity:0;
 }
+.dada.is-cut .cut-btn{opacity:0;transition:opacity .45s ease .15s}
 .dada.is-done .cut-echo__line,.dada.is-done .cut-echo__hint{
   animation:echoIn .72s cubic-bezier(.2,.8,.3,1) forwards;
 }
