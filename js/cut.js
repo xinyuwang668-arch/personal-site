@@ -255,6 +255,17 @@
   function crumple() {
     if (!inner) return;
 
+    /* 先把要藏起来的版块记下来——必须赶在包裹挂到 body 之前，
+       否则新挂上去的 .crumple 也会被当成“后面的版块”一起藏掉 */
+    var gone = [];
+    var sib = section.nextElementSibling;
+    while (sib) { gone.push(sib); sib = sib.nextElementSibling; }
+    var mainEl = doc.getElementById('main');
+    if (mainEl) {
+      var s = mainEl.nextElementSibling;
+      while (s) { gone.push(s); s = s.nextElementSibling; }
+    }
+
     var box = inner.getBoundingClientRect();
     var lineBottom = cutLine.getBoundingClientRect().bottom + window.pageYOffset;
 
@@ -271,14 +282,6 @@
     loosed().forEach(function (chip) { wrap.appendChild(chip); });
 
     /* 切线以下的其它版块：立刻收走——它们本来就在屏幕外，留着只会把布局撑起来 */
-    var gone = [];
-    var sib = section.nextElementSibling;
-    while (sib) { gone.push(sib); sib = sib.nextElementSibling; }
-    var mainEl = doc.getElementById('main');
-    if (mainEl) {
-      var s = mainEl.nextElementSibling;
-      while (s) { gone.push(s); s = s.nextElementSibling; }
-    }
     gone.forEach(function (n) { n.style.display = 'none'; });
 
     section.classList.add('is-cut');
@@ -338,8 +341,8 @@
           doc.documentElement.dataset.cutStage = 'done';
           setTimeout(function () { wad.style.display = 'none'; }, 260);
         }, 640);
-      }, 240);
-    }, 430);
+      }, 420);
+    }, 520);
   }
 
   cutBtn.addEventListener('click', cutNow);

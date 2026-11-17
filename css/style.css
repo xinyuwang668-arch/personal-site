@@ -2142,10 +2142,10 @@ main{position:relative;z-index:1}
 .crumple{
   position:absolute;left:0;width:100%;z-index:80;pointer-events:none;
   transform-origin:50% 0;will-change:transform,opacity;
-  transition:transform .44s cubic-bezier(.45,.05,.6,1),filter .44s ease,opacity .26s ease;
+  transition:transform .52s cubic-bezier(.4,.05,.55,1),filter .52s ease,opacity .42s ease;
 }
-.crumple.is-squeezing{transform:scale(.962,.9);filter:blur(.5px) contrast(1.03)}
-.crumple.is-gone{transform:scale(.05);opacity:0;transition:transform .26s ease-in,opacity .26s ease-in}
+.crumple.is-squeezing{transform:scale(.945,.87) rotate(.45deg);filter:blur(.9px) contrast(1.04)}
+.crumple.is-gone{transform:scale(.2,.13) rotate(-3.2deg);opacity:0;filter:blur(3px);transition:transform .42s cubic-bezier(.55,0,.8,.4),opacity .42s ease,filter .42s ease}
 
 .cut-wad{
   position:absolute;width:92px;height:84px;margin:-42px 0 0 -46px;z-index:92;
@@ -2193,7 +2193,7 @@ main{position:relative;z-index:1}
 .cut-echo__line:nth-child(1){--tilt:-.8deg}
 .cut-echo__line:nth-child(2){--tilt:.6deg}
 .cut-echo__line:nth-child(3){--tilt:-.4deg}
-.cut-echo__line--face{font-size:clamp(26px,3.6vw,40px);letter-spacing:0;color:var(--brass)}
+.cut-echo__line--face{font-size:clamp(26px,3.6vw,40px);letter-spacing:-.14em;color:var(--brass)}
 .cut-echo__hint{
   margin:clamp(20px,3.4vw,34px) 0 0;font-family:var(--font-mono);font-size:10px;
   letter-spacing:.16em;color:var(--ink-faint);opacity:0;
