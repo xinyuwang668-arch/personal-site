@@ -250,10 +250,10 @@
   z-index: 1;
 }
 
-/* 右侧带「全部文章 →」这类链接的标题行，水印往下压、再淡一档 */
+/* 右侧已经有「2026 — 至今」「全部文章 →」这类内容的标题行，不放水印，
+   免得两个东西抢同一个角 */
 .sec-head--row::after {
-  top: .2em;
-  opacity: .42;
+  display: none;
 }
 
 .section--about .sec-head::after { content: "01"; }
